@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.mockpropertymanagmentapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activities.VendorActivity"></activity>
+        <activity android:name=".activities.DocumentActivity" />
+        <activity android:name=".activities.TripActivity" />
+        <activity android:name=".activities.ToDoListActivity" />
+        <activity android:name=".activities.CollectRentActivity" />
+        <activity android:name=".activities.TransactionsActivity" />
+        <activity android:name=".activities.TenantsActivity" />
+        <activity android:name=".activities.PropertyActivity" />
+        <activity android:name=".activities.HomeActivity" />
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.StartActivity" />
+        <activity android:name=".activities.SpalshActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
