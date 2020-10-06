@@ -5,8 +5,22 @@
     <string name="prefix">pREfIX</string>
     <string name="log_in">Log in</string>
     <string name="sign_up">Sign up</string>
-    <string name="log_in_here">Log in here</string>
+    <string name="log_in_here">Log in Here</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="submit">Submit</string>
+    <string name="the_best_in_property_management">The best in property management</string>
+    <string name="welcome_to_prefix">Welcome to pREfIX</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="register_here">Register Here</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="vendor_page">Vendor Page</string>
+    <string name="home_page">Home Page</string>
+    <string name="trip_page">Trip Page</string>
+    <string name="transactions">Transactions</string>
+    <string name="tenants_page">Tenants Page</string>
+    <string name="property_page">Property Page</string>
+    <string name="document_page">Document Page</string>
+    <string name="collect_rent_page">Collect Rent Page</string>
 </resources>

@@ -20,8 +20,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="50dp"
-            android:text="Welcome to pREfIX"
-            android:textColor="@color/colorTextWhite"
+            android:textStyle="bold"
+            android:text="@string/welcome_to_prefix"
+            android:textColor="@color/colorAccent1"
             android:textSize="40sp" />
 
         <Button
@@ -30,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorAccent1"
             android:text="@string/log_in"
             android:textColor="@color/colorTextWhite" />
 
@@ -40,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorAccent1"
             android:text="@string/sign_up"
             android:textColor="@color/colorTextWhite" />
     </LinearLayout>
