@@ -9,22 +9,22 @@ import retrofit2.http.*
 
 interface MyApi {
 
-    @POST("")
+    @POST("/api/auth/login")
     fun login(@Body user: User) : Call<LoginResponse>
 
-    @POST("")
+    @POST("/api/auth/register")
     fun register()
 
-    @PUT("")
-    fun updateUser(@Body user: User, @Query("id") id: Int)
-
-    @DELETE("")
-    fun deleteUser(@Path("id") id: Int)
+//    @PUT("")
+//    fun updateUser(@Body user: User, @Query("id") id: Int)
+//
+//    @DELETE("")
+//    fun deleteUser(@Path("id") id: Int)
 
     companion object {
         operator fun invoke() : MyApi {
             return Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("https://apolis-property-management.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(MyApi::class.java)
