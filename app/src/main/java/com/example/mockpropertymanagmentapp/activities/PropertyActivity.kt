@@ -1,17 +1,23 @@
 package com.example.mockpropertymanagmentapp.activities
 
 import android.Manifest
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Toast
 import com.example.mockpropertymanagmentapp.R
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_property.*
+import kotlinx.android.synthetic.main.property_bottom_sheet.view.*
 
 class PropertyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,10 +27,41 @@ class PropertyActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.property_bottom_sheet, null)
+        bottomSheetDialog.setContentView(view)
         button_property_add_photo.setOnClickListener{
+            bottomSheetDialog.show()
+        }
+        view.button_to_camera.setOnClickListener{
             requestCameraPermission()
         }
+        view.button_to_gallery.setOnClickListener{
+            requestGalleryPermissions()
+        }
     }
+
+    private fun requestGalleryPermissions() {
+        Dexter.withContext(this)
+            .withPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+            .withListener(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                    if (report!!.areAllPermissionsGranted()) {
+                        Toast.makeText(applicationContext, "Gallery permissions were granted", Toast.LENGTH_SHORT).show()
+                    }
+                    if(report.isAnyPermissionPermanentlyDenied) {
+                        Toast.makeText(applicationContext, "Permission was permanently denied", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onPermissionRationaleShouldBeShown(p0: MutableList<PermissionRequest>?, token: PermissionToken?) {
+                    token?.continuePermissionRequest()
+                }
+
+            }).onSameThread()
+            .check()
+    }
+
 
     private fun requestCameraPermission() {
         Dexter.withContext(this)
@@ -32,6 +69,7 @@ class PropertyActivity : AppCompatActivity() {
             .withListener(object: PermissionListener{
                 override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
                     Toast.makeText(applicationContext, "Access Granted", Toast.LENGTH_SHORT).show()
+                    openTheCamera()
                 }
 
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
@@ -47,4 +85,11 @@ class PropertyActivity : AppCompatActivity() {
 
             }).check()
     }
+    private fun openTheCamera() {
+        var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivity(intent)
+    }
+
+
+
 }
