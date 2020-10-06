@@ -14,17 +14,16 @@
         android:layout_gravity="center_horizontal"
         android:textColor="@color/colorTextWhite" />
 
-    <view class="com.google.android.material.tabs.TabLayout$TabView"
-        android:id="@+id/tab_view_register"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_register"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager_register"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp" />
-
 
 
 
