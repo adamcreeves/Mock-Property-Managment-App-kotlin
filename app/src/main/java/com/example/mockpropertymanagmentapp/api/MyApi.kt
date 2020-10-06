@@ -1,8 +1,6 @@
 package com.example.mockpropertymanagmentapp.api
 
-import com.example.mockpropertymanagmentapp.models.Landlord
-import com.example.mockpropertymanagmentapp.models.RegisterResponse
-import com.example.mockpropertymanagmentapp.models.Tenant
+import com.example.mockpropertymanagmentapp.models.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -10,8 +8,8 @@ import retrofit2.http.*
 
 interface MyApi {
 
-//    @POST("/api/auth/login")
-//    fun login(@Body tenantOrLandlord: TenantOrLandlord) : Call<LoginResponse>
+    @POST("/api/auth/login")
+    fun login(@Body loginUser: LoginUser) : Call<LoginResponse>
 
     @POST("auth/register")
     fun registerLandlord(@Body landlord: Landlord) : Call<RegisterResponse>

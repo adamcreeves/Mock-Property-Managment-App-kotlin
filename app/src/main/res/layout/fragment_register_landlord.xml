@@ -1,64 +1,66 @@
-<RelativeLayout android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent3"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:background="@color/colorAccent3">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_centerVertical="true"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/edit_text_register_landlord_name"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_margin="5dp"
-            android:padding="7dp"
-            android:hint="@string/full_name"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorTextWhite" />
+            android:layout_margin="5dp"
+            android:background="@color/colorTextWhite"
+            android:hint="@string/full_name"
+            android:padding="7dp"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/edit_text_register_landlord_email"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_margin="5dp"
-            android:padding="7dp"
-            android:hint="@string/email"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorTextWhite" />
+            android:layout_margin="5dp"
+            android:background="@color/colorTextWhite"
+            android:hint="@string/email"
+            android:padding="7dp"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/edit_text_register_landlord_password"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_margin="5dp"
-            android:padding="7dp"
-            android:hint="@string/password"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorTextWhite" />
+            android:layout_margin="5dp"
+            android:background="@color/colorTextWhite"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="7dp"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/edit_text_register_landlord_confirm_password"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_margin="5dp"
-            android:padding="7dp"
-            android:hint="@string/confirm_password"
             android:layout_gravity="center_horizontal"
-            android:background="@color/colorTextWhite" />
+            android:layout_margin="5dp"
+            android:background="@color/colorTextWhite"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:padding="7dp"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/button_register_landlord_submit"
             android:layout_width="190dp"
-            android:layout_marginTop="15dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
             android:text="@string/register"
             android:textSize="17sp" />
 

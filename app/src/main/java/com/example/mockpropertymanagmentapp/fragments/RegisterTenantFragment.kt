@@ -1,5 +1,6 @@
 package com.example.mockpropertymanagmentapp.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.mockpropertymanagmentapp.R
+import com.example.mockpropertymanagmentapp.activities.LoginActivity
 import com.example.mockpropertymanagmentapp.api.MyApi
 import com.example.mockpropertymanagmentapp.models.Landlord
 import com.example.mockpropertymanagmentapp.models.RegisterResponse
@@ -50,8 +52,8 @@ class RegisterTenantFragment : Fragment() {
                             call: Call<RegisterResponse>,
                             response: Response<RegisterResponse>
                         ) {
-                            Log.d("abc", response.message())
                             Toast.makeText(activity, "Registration Successful", Toast.LENGTH_SHORT).show()
+                            context!!.startActivity(Intent(context, LoginActivity::class.java))
                         }
                         override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                             Toast.makeText(activity, "Registration Failed", Toast.LENGTH_SHORT).show()
