@@ -43,37 +43,55 @@ class PropertyActivity : AppCompatActivity() {
 
     private fun requestGalleryPermissions() {
         Dexter.withContext(this)
-            .withPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+            .withPermissions(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
             .withListener(object : MultiplePermissionsListener {
                 override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                     if (report!!.areAllPermissionsGranted()) {
-                        Toast.makeText(applicationContext, "Gallery permissions were granted", Toast.LENGTH_SHORT).show()
+                        //       openTheGallery()
+                        Toast.makeText(
+                            applicationContext,
+                            "Gallery Access Granted",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                    if(report.isAnyPermissionPermanentlyDenied) {
-                        Toast.makeText(applicationContext, "Permission was permanently denied", Toast.LENGTH_SHORT).show()
+                    if (report.isAnyPermissionPermanentlyDenied) {
+                        Toast.makeText(
+                            applicationContext,
+                            "1 of both Gallery Permissions Denied",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
-                override fun onPermissionRationaleShouldBeShown(p0: MutableList<PermissionRequest>?, token: PermissionToken?) {
+                override fun onPermissionRationaleShouldBeShown(
+                    p0: MutableList<PermissionRequest>?,
+                    token: PermissionToken?
+                ) {
                     token?.continuePermissionRequest()
                 }
 
             }).onSameThread()
             .check()
     }
-
+    // this isn't working. Still need to figure out how to open the Gallery
+    private fun openTheGallery() {
+        startActivity(Intent(MediaStore.ACTION_REVIEW_SECURE))
+    }
 
     private fun requestCameraPermission() {
         Dexter.withContext(this)
             .withPermission(Manifest.permission.CAMERA)
             .withListener(object: PermissionListener{
                 override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                    Toast.makeText(applicationContext, "Access Granted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Camera Access Granted", Toast.LENGTH_SHORT).show()
                     openTheCamera()
                 }
 
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                    Toast.makeText(applicationContext, "Access Denied", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Camera Access Denied", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onPermissionRationaleShouldBeShown(
