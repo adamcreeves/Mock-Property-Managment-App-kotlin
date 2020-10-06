@@ -1,6 +1,6 @@
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent1"
+    android:background="@color/colorAccent3"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -8,6 +8,17 @@
         android:layout_centerVertical="true"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edit_text_register_landlord_name"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="5dp"
+            android:padding="7dp"
+            android:hint="@string/full_name"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorTextWhite" />
 
         <EditText
             android:id="@+id/edit_text_register_landlord_email"
@@ -49,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/register"
-            android:textSize="20sp" />
+            android:textSize="17sp" />
 
     </LinearLayout>
 

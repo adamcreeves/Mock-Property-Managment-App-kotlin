@@ -5,56 +5,60 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.mockpropertymanagmentapp.R
+import com.example.mockpropertymanagmentapp.api.MyApi
+import com.example.mockpropertymanagmentapp.models.Landlord
+import com.example.mockpropertymanagmentapp.models.RegisterResponse
+import kotlinx.android.synthetic.main.fragment_register_landlord.*
+import kotlinx.android.synthetic.main.fragment_register_landlord.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RegisterLandlordFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RegisterLandlordFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register_landlord, container, false)
+        var view = inflater.inflate(R.layout.fragment_register_landlord, container, false)
+        init(view)
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RegisterLandlordFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RegisterLandlordFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun init(view: View) {
+        var api = MyApi()
+        view.button_register_landlord_submit.setOnClickListener {
+            var name = view.edit_text_register_landlord_name.text.toString()
+            var email = view.edit_text_register_landlord_email.text.toString()
+            var password = view.edit_text_register_landlord_password.text.toString()
+            var confirmPassword = view.edit_text_register_landlord_confirm_password.text.toString()
+            var type = "landlord"
+            if (password == confirmPassword && password.length > 5) {
+                var landlord = Landlord(email, name, password, type)
+                api.registerLandlord(landlord)
+                    .enqueue(object: Callback<RegisterResponse>{
+                        override fun onResponse(
+                            call: Call<RegisterResponse>,
+                            response: Response<RegisterResponse>
+                        ) {
+                            Toast.makeText(activity, "Registration Successful", Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                            Toast.makeText(activity, "Registration Failed", Toast.LENGTH_SHORT).show()
+                        }
+
+                    })
+            } else Toast.makeText(
+                activity,
+                "Passwords don't match or less than 6 characters",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
+
 }
