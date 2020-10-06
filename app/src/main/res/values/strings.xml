@@ -12,7 +12,6 @@
     <string name="the_best_in_property_management">The best in property management</string>
     <string name="welcome_to_prefix">Welcome to pREfIX</string>
     <string name="reset_password">Reset Password</string>
-    <string name="register_here">Register Here</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
     <string name="vendor_page">Vendor Page</string>
@@ -25,4 +24,7 @@
     <string name="collect_rent_page">Collect Rent Page</string>
     <string name="landlord_s_email">Landlord\'s Email</string>
     <string name="full_name">Full Name</string>
+    <string name="add_property">Add Property</string>
+    <string name="want_to_add_a_new_property">Want to add a new Property?</string>
+    <string name="add_photo">Add Photo</string>
 </resources>

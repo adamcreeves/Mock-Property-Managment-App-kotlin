@@ -89,7 +89,7 @@
             android:layout_margin="15dp"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:text="@string/register_here" />
+            android:text="@string/register" />
 
         <Button
             android:id="@+id/button_login_reset_password"

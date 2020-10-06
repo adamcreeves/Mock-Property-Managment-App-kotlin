@@ -34,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
                         call: Call<LoginResponse>,
                         response: Response<LoginResponse>
                     ) {
+                        Log.d("abc", response.message())
                         if (response.message() == "Not Found") {
                             Toast.makeText(
                                 applicationContext,
