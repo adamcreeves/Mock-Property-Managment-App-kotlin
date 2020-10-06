@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.api.MyApi
+import com.example.mockpropertymanagmentapp.helpers.SessionManager
 import com.example.mockpropertymanagmentapp.models.LoginResponse
 import com.example.mockpropertymanagmentapp.models.LoginUser
 import com.example.mockpropertymanagmentapp.models.RegisterResponse
@@ -16,9 +17,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+    lateinit var sessionManager: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        sessionManager = SessionManager(this)
         init()
     }
 
@@ -48,6 +51,7 @@ class LoginActivity : AppCompatActivity() {
                                 "Login Successful",
                                 Toast.LENGTH_SHORT
                             ).show()
+                            sessionManager.saveUserLogin(response.body()!!.token)
                             startActivity(Intent(applicationContext, HomeActivity::class.java))
                         }
                     }
