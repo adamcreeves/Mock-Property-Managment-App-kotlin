@@ -65,5 +65,8 @@ class LoginActivity : AppCompatActivity() {
         button_login_to_register.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+        button_login_reset_password.setOnClickListener{
+            Toast.makeText(this, "You can't reset your password right now", Toast.LENGTH_SHORT).show()
+        }
     }
 }

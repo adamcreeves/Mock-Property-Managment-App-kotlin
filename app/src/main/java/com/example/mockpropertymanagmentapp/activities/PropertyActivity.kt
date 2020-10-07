@@ -50,7 +50,7 @@ class PropertyActivity : AppCompatActivity() {
             .withListener(object : MultiplePermissionsListener {
                 override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                     if (report!!.areAllPermissionsGranted()) {
-                        //       openTheGallery()
+                        openTheGallery()
                         Toast.makeText(
                             applicationContext,
                             "Gallery Access Granted",
@@ -76,9 +76,13 @@ class PropertyActivity : AppCompatActivity() {
             }).onSameThread()
             .check()
     }
-    // this isn't working. Still need to figure out how to open the Gallery
+    
     private fun openTheGallery() {
-        startActivity(Intent(MediaStore.ACTION_REVIEW_SECURE))
+        var intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 
     private fun requestCameraPermission() {
