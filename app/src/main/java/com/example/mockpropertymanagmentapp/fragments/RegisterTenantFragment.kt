@@ -23,8 +23,6 @@ import retrofit2.Response
 
 
 class RegisterTenantFragment : Fragment() {
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,6 +62,9 @@ class RegisterTenantFragment : Fragment() {
                 "Passwords don't match or less than 6 characters",
                 Toast.LENGTH_SHORT
             ).show()
+        }
+        view.button_register_tenant_to_login.setOnClickListener{
+            context!!.startActivity(Intent(context, LoginActivity::class.java))
         }
     }
 }

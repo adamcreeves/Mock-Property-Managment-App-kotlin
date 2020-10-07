@@ -60,7 +60,7 @@ class PropertyActivity : AppCompatActivity() {
                     if (report.isAnyPermissionPermanentlyDenied) {
                         Toast.makeText(
                             applicationContext,
-                            "1 of both Gallery Permissions Denied",
+                            "Gallery Permission Denied",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -76,7 +76,7 @@ class PropertyActivity : AppCompatActivity() {
             }).onSameThread()
             .check()
     }
-    
+
     private fun openTheGallery() {
         var intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT

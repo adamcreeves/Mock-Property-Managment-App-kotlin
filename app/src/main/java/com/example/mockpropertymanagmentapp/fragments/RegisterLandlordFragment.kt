@@ -14,6 +14,7 @@ import com.example.mockpropertymanagmentapp.models.Landlord
 import com.example.mockpropertymanagmentapp.models.RegisterResponse
 import kotlinx.android.synthetic.main.fragment_register_landlord.*
 import kotlinx.android.synthetic.main.fragment_register_landlord.view.*
+import kotlinx.android.synthetic.main.fragment_register_tenant.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -60,6 +61,9 @@ class RegisterLandlordFragment : Fragment() {
                 "Passwords don't match or less than 6 characters",
                 Toast.LENGTH_SHORT
             ).show()
+        }
+        view.button_register_landlord_to_login.setOnClickListener{
+            context!!.startActivity(Intent(context, LoginActivity::class.java))
         }
     }
 

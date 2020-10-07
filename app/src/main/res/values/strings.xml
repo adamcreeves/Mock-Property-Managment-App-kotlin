@@ -29,4 +29,6 @@
     <string name="add_photo">Add Photo</string>
     <string name="open_camera">Open Camera</string>
     <string name="open_gallery">Open Gallery</string>
+    <string name="full_name1">Full Name</string>
+    <string name="already_registered">Already Registered?</string>
 </resources>
