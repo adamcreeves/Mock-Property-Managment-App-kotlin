@@ -1,4 +1,4 @@
-package com.example.mockpropertymanagmentapp.activities
+package com.example.mockpropertymanagmentapp.ui.home
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.example.mockpropertymanagmentapp.R
+import com.example.mockpropertymanagmentapp.ui.otheractivities.PropertyActivity
+import com.example.mockpropertymanagmentapp.ui.otheractivities.StartActivity
 import com.example.mockpropertymanagmentapp.helpers.SessionManager
 import kotlinx.android.synthetic.main.activity_home.*
 

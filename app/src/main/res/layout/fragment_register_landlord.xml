@@ -1,126 +1,137 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAccent3">
+<layout>
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.mockpropertymanagmentapp.ui.auth.AuthViewModel" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent3">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"
-            android:background="@color/colorTextWhite"
-            android:hint="@string/full_name"
-            android:padding="2dp">
-
-            <EditText
-                android:id="@+id/edit_text_register_landlord_name"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:textSize="15sp" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"
-            android:background="@color/colorTextWhite"
-            android:hint="@string/email"
-            android:padding="2dp">
-
-            <EditText
-                android:id="@+id/edit_text_register_landlord_email"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="15sp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"
-            android:background="@color/colorTextWhite"
-            android:hint="@string/password"
-            android:padding="2dp">
-
-            <EditText
-                android:id="@+id/edit_text_register_landlord_password"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPassword"
-                android:textSize="15sp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"
-            android:background="@color/colorTextWhite"
-            android:hint="@string/confirm_password"
-            android:padding="2dp">
-
-            <EditText
-                android:id="@+id/edit_text_register_landlord_confirm_password"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPassword"
-                android:textSize="15sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/button_register_landlord_submit"
-            android:layout_width="190dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="@string/register"
-            android:textColor="@color/colorTextWhite"
-            android:textSize="15sp"
-            android:textStyle="italic" />
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:text="@string/already_registered"
-            android:textColor="@color/colorTextWhite"
-            android:textStyle="bold" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button_register_landlord_to_login"
-            android:layout_width="150dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:background="@color/colorTextWhite"
+                android:hint="@string/full_name"
+                android:padding="2dp">
+
+                <EditText
+                    android:id="@+id/edit_text_register_landlord_name"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:background="@color/colorTextWhite"
+                android:hint="@string/email"
+                android:padding="2dp">
+
+                <EditText
+                    android:id="@+id/edit_text_register_landlord_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="15sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:background="@color/colorTextWhite"
+                android:hint="@string/password"
+                android:padding="2dp">
+
+                <EditText
+                    android:id="@+id/edit_text_register_landlord_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:textSize="15sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:background="@color/colorTextWhite"
+                android:hint="@string/confirm_password"
+                android:padding="2dp">
+
+                <EditText
+                    android:id="@+id/edit_text_register_landlord_confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button_register_landlord_submit"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="@string/register"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@color/colorAccent2"
-            android:text="@string/log_in_here"
-            android:textColor="@color/colorTextWhite" />
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:text="@string/already_registered"
+                android:textColor="@color/colorTextWhite"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_register_landlord_to_login"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@color/colorAccent2"
+                android:text="@string/log_in_here"
+                android:textColor="@color/colorTextWhite" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
-
-</RelativeLayout>
+</layout>

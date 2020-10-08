@@ -1,121 +1,136 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAccent1"
-    android:orientation="vertical">
+<layout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="35dp"
-        android:text="@string/log_in_here"
-        android:textColor="@color/colorTextWhite"
-        android:textSize="35sp"
-        android:textStyle="bold" />
+    <data>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
-        android:background="@color/colorPrimary"
-        android:hint="@string/email"
-        android:padding="2dp">
+        <variable
+            name="viewModel"
+            type="com.example.mockpropertymanagmentapp.ui.auth.AuthViewModel" />
 
+    </data>
 
-        <EditText
-            android:id="@+id/edit_text_login_email"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="15sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
-        android:background="@color/colorPrimary"
-        android:hint="@string/password"
-        android:padding="2dp">
-
-        <EditText
-            android:id="@+id/edit_text_login_password"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPassword"
-            android:textSize="15sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/button_login_submit"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/submit"
-        android:textColor="@color/colorTextWhite"
-        android:textSize="15sp" />
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent1"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="New User?"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="200dp"
+            android:layout_marginBottom="35dp"
+            android:text="@string/log_in_here"
             android:textColor="@color/colorTextWhite"
-            android:textSize="20sp"
+            android:textSize="35sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="Forgot Password?"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimary"
+            android:hint="@string/email"
+            android:padding="2dp">
+
+
+            <EditText
+                android:text="@={viewModel.email}"
+                android:id="@+id/edit_text_login_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimary"
+            android:hint="@string/password"
+            android:padding="2dp">
+
+            <EditText
+                android:text="@={viewModel.password}"
+                android:id="@+id/edit_text_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:onClick="@{viewModel::onLoginButtonClicked}"
+            android:id="@+id/button_login_submit"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/submit"
             android:textColor="@color/colorTextWhite"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="New User?"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="Forgot Password?"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/button_login_to_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="@string/register" />
+
+            <Button
+                android:id="@+id/button_login_reset_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="@string/reset_password" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <Button
-            android:id="@+id/button_login_to_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:text="@string/register" />
-
-        <Button
-            android:id="@+id/button_login_reset_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:text="@string/reset_password" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</layout>

@@ -1,4 +1,4 @@
-package com.example.mockpropertymanagmentapp.activities
+package com.example.mockpropertymanagmentapp.ui.otheractivities
 
 import android.Manifest
 import android.content.Intent

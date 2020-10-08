@@ -1,51 +1,47 @@
-package com.example.mockpropertymanagmentapp.fragments
+package com.example.mockpropertymanagmentapp.ui.auth.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.mockpropertymanagmentapp.R
-import com.example.mockpropertymanagmentapp.activities.LoginActivity
-import com.example.mockpropertymanagmentapp.api.MyApi
-import com.example.mockpropertymanagmentapp.models.Landlord
-import com.example.mockpropertymanagmentapp.models.RegisterResponse
-import com.example.mockpropertymanagmentapp.models.Tenant
-import kotlinx.android.synthetic.main.fragment_register_landlord.*
-import kotlinx.android.synthetic.main.fragment_register_tenant.*
-import kotlinx.android.synthetic.main.fragment_register_tenant.view.*
+import com.example.mockpropertymanagmentapp.ui.auth.activities.LoginActivity
+import com.example.mockpropertymanagmentapp.data.network.MyApi
+import com.example.mockpropertymanagmentapp.data.models.Landlord
+import com.example.mockpropertymanagmentapp.data.models.RegisterResponse
+import kotlinx.android.synthetic.main.fragment_register_landlord.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class RegisterTenantFragment : Fragment() {
+class RegisterLandlordFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_register_tenant, container, false)
+        var view = inflater.inflate(R.layout.fragment_register_landlord, container, false)
         init(view)
         return view
     }
 
     private fun init(view: View) {
         var api = MyApi()
-        view.button_register_tenant_submit.setOnClickListener {
-            var landlordEmail = view.edit_text_register_tenant_landlord_email.text.toString()
-            var email = view.edit_text_register_tenant_email.text.toString()
-            var name = view.edit_text_register_tenant_name.text.toString()
-            var password = view.edit_text_register_tenant_password.text.toString()
-            var confirmPassword = view.edit_text_register_tenant_confirm_password.text.toString()
-            var type = "tenant"
+        view.button_register_landlord_submit.setOnClickListener {
+            var name = view.edit_text_register_landlord_name.text.toString()
+            var email = view.edit_text_register_landlord_email.text.toString()
+            var password = view.edit_text_register_landlord_password.text.toString()
+            var confirmPassword = view.edit_text_register_landlord_confirm_password.text.toString()
+            var type = "landlord"
             if (password == confirmPassword && password.length > 5) {
-                var tenant = Tenant(email, landlordEmail, name, password, type)
-                api.registerTenant(tenant)
-                    .enqueue(object: Callback<RegisterResponse> {
+                var landlord = Landlord(email, name, password, type)
+                api.registerLandlord(landlord)
+                    .enqueue(object: Callback<RegisterResponse>{
                         override fun onResponse(
                             call: Call<RegisterResponse>,
                             response: Response<RegisterResponse>
@@ -56,6 +52,7 @@ class RegisterTenantFragment : Fragment() {
                         override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                             Toast.makeText(activity, "Registration Failed", Toast.LENGTH_SHORT).show()
                         }
+
                     })
             } else Toast.makeText(
                 activity,
@@ -63,10 +60,9 @@ class RegisterTenantFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-        view.button_register_tenant_to_login.setOnClickListener{
+        view.button_register_landlord_to_login.setOnClickListener{
             context!!.startActivity(Intent(context, LoginActivity::class.java))
         }
     }
+
 }
-
-

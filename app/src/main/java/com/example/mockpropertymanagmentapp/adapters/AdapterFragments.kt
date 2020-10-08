@@ -3,8 +3,8 @@ package com.example.mockpropertymanagmentapp.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.mockpropertymanagmentapp.fragments.RegisterLandlordFragment
-import com.example.mockpropertymanagmentapp.fragments.RegisterTenantFragment
+import com.example.mockpropertymanagmentapp.ui.auth.fragments.RegisterLandlordFragment
+import com.example.mockpropertymanagmentapp.ui.auth.fragments.RegisterTenantFragment
 
 class AdapterFragments(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 

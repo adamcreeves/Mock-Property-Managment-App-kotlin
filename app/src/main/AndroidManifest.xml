@@ -14,19 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.VendorActivity" />
-        <activity android:name=".activities.DocumentActivity" />
-        <activity android:name=".activities.TripActivity" />
-        <activity android:name=".activities.ToDoListActivity" />
-        <activity android:name=".activities.CollectRentActivity" />
-        <activity android:name=".activities.TransactionsActivity" />
-        <activity android:name=".activities.TenantsActivity" />
-        <activity android:name=".activities.PropertyActivity" />
-        <activity android:name=".activities.HomeActivity" />
-        <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.StartActivity" />
-        <activity android:name=".activities.SplashActivity">
+        <activity android:name="com.example.mockpropertymanagmentapp.ui.otheractivities.DocumentActivity" />
+        <activity android:name="com.example.mockpropertymanagmentapp.ui.otheractivities.TripActivity" />
+        <activity android:name="com.example.mockpropertymanagmentapp.ui.otheractivities.ToDoListActivity" />
+        <activity android:name="com.example.mockpropertymanagmentapp.ui.otheractivities.CollectRentActivity" />
+        <activity android:name="com.example.mockpropertymanagmentapp.ui.otheractivities.TransactionsActivity" />
+        <activity android:name="com.example.mockpropertymanagmentapp.ui.otheractivities.TenantsActivity" />
+        <activity android:name="com.example.mockpropertymanagmentapp.ui.otheractivities.PropertyActivity" />
+        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.auth.activities.RegisterActivity" />
+        <activity android:name=".ui.auth.activities.LoginActivity" />
+        <activity android:name="com.example.mockpropertymanagmentapp.ui.otheractivities.StartActivity" />
+        <activity android:name="com.example.mockpropertymanagmentapp.ui.otheractivities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

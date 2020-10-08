@@ -1,4 +1,4 @@
-package com.example.mockpropertymanagmentapp.models
+package com.example.mockpropertymanagmentapp.data.models
 
 data class LoginResponse(
     val token: String,

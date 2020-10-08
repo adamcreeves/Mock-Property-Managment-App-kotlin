@@ -1,9 +1,11 @@
-package com.example.mockpropertymanagmentapp.activities
+package com.example.mockpropertymanagmentapp.ui.otheractivities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.mockpropertymanagmentapp.R
+import com.example.mockpropertymanagmentapp.ui.auth.activities.LoginActivity
+import com.example.mockpropertymanagmentapp.ui.auth.activities.RegisterActivity
 import kotlinx.android.synthetic.main.activity_start.*
 
 class StartActivity : AppCompatActivity() {

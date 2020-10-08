@@ -1,6 +1,7 @@
-package com.example.mockpropertymanagmentapp.api
+package com.example.mockpropertymanagmentapp.data.network
 
-import com.example.mockpropertymanagmentapp.models.*
+import com.example.mockpropertymanagmentapp.app.Config
+import com.example.mockpropertymanagmentapp.data.models.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -8,7 +9,7 @@ import retrofit2.http.*
 
 interface MyApi {
 
-    @POST("/api/auth/login")
+    @POST("auth/login")
     fun login(@Body loginUser: LoginUser) : Call<LoginResponse>
 
     @POST("auth/register")
@@ -26,7 +27,7 @@ interface MyApi {
     companion object {
         operator fun invoke() : MyApi {
             return Retrofit.Builder()
-                .baseUrl("https://apolis-property-management.herokuapp.com/api/")
+                .baseUrl(Config.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(MyApi::class.java)
