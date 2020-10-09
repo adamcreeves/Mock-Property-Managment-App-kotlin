@@ -32,10 +32,7 @@ class LoginActivity : AppCompatActivity(), AuthListener {
         val viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
         binding.viewModel = viewModel
         viewModel.authListener = this
-
-
-//        setContentView(R.layout.activity_login)
-//        sessionManager = SessionManager(this)
+        sessionManager = SessionManager(this)
   //     init()
     }
 
