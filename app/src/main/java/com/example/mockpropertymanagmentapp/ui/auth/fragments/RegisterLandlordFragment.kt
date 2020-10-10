@@ -7,18 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.ui.auth.activities.LoginActivity
 import com.example.mockpropertymanagmentapp.data.network.MyApi
 import com.example.mockpropertymanagmentapp.data.models.Landlord
 import com.example.mockpropertymanagmentapp.data.models.RegisterResponse
+import com.example.mockpropertymanagmentapp.ui.auth.AuthListener
 import kotlinx.android.synthetic.main.fragment_register_landlord.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class RegisterLandlordFragment : Fragment() {
+class RegisterLandlordFragment : Fragment(), AuthListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,6 +65,18 @@ class RegisterLandlordFragment : Fragment() {
         view.button_register_landlord_to_login.setOnClickListener{
             context!!.startActivity(Intent(context, LoginActivity::class.java))
         }
+    }
+
+    override fun onStarted() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSuccess(response: LiveData<String>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onFailure(message: String) {
+        TODO("Not yet implemented")
     }
 
 }
