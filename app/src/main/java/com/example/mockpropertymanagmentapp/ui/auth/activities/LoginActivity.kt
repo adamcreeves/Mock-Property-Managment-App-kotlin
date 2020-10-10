@@ -53,7 +53,6 @@ class LoginActivity : AppCompatActivity(), AuthListener {
         response.observe(this, Observer {
             this.toastShort("Login successfull")
             sessionManager.saveUserLogin(response.toString())
-            Log.d("abc", response.toString())
             startActivity(Intent(applicationContext, HomeActivity::class.java))
         })
 

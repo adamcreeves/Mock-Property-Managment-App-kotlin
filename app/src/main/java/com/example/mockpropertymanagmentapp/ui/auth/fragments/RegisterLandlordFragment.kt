@@ -7,13 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.ui.auth.activities.LoginActivity
 import com.example.mockpropertymanagmentapp.data.network.MyApi
 import com.example.mockpropertymanagmentapp.data.models.Landlord
 import com.example.mockpropertymanagmentapp.data.models.RegisterResponse
+import com.example.mockpropertymanagmentapp.databinding.FragmentRegisterLandlordBinding
+import com.example.mockpropertymanagmentapp.helpers.toastShort
 import com.example.mockpropertymanagmentapp.ui.auth.AuthListener
+import com.example.mockpropertymanagmentapp.ui.auth.AuthViewModel
 import kotlinx.android.synthetic.main.fragment_register_landlord.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,10 +32,11 @@ class RegisterLandlordFragment : Fragment(), AuthListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_register_landlord, container, false)
-        init(view)
-        return view
+        var binding: FragmentRegisterLandlordBinding = DataBindingUtil.setContentView(activity!!, R.layout.fragment_register_landlord)
+        val viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
+        binding.viewModel = viewModel
+        viewModel.authListener = this
+        return binding.root
     }
 
     private fun init(view: View) {
@@ -68,15 +75,18 @@ class RegisterLandlordFragment : Fragment(), AuthListener {
     }
 
     override fun onStarted() {
-        TODO("Not yet implemented")
+        context!!.toastShort("Registration initiated")
     }
 
     override fun onSuccess(response: LiveData<String>) {
-        TODO("Not yet implemented")
+        response.observe(this, Observer {
+            context!!.toastShort("Registration successful")
+            startActivity(Intent(context, LoginActivity::class.java))
+        })
     }
 
     override fun onFailure(message: String) {
-        TODO("Not yet implemented")
+        context!!.toastShort(message)
     }
 
 }

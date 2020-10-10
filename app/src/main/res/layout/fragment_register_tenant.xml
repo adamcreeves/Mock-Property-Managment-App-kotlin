@@ -29,6 +29,7 @@
                 android:padding="2dp">
 
                 <EditText
+                    android:text="@={viewModel.landlordEmail}"
                     android:id="@+id/edit_text_register_tenant_landlord_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -46,6 +47,7 @@
                 android:padding="2dp">
 
                 <EditText
+                    android:text="@={viewModel.name}"
                     android:id="@+id/edit_text_register_tenant_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -63,6 +65,7 @@
                 android:padding="2dp">
 
                 <EditText
+                    android:text="@={viewModel.email}"
                     android:id="@+id/edit_text_register_tenant_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -80,6 +83,7 @@
                 android:padding="2dp">
 
                 <EditText
+                    android:text="@={viewModel.password}"
                     android:id="@+id/edit_text_register_tenant_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -98,6 +102,7 @@
                 android:padding="2dp">
 
                 <EditText
+                    android:text="@={viewModel.confirmPassword}"
                     android:id="@+id/edit_text_register_tenant_confirm_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -107,6 +112,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:onClick="@{viewModel::onRegisterTenantClicked}"
                 android:id="@+id/button_register_tenant_submit"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
