@@ -27,12 +27,12 @@ import retrofit2.Response
 
 
 class RegisterLandlordFragment : Fragment(), AuthListener {
-
+    lateinit var binding: FragmentRegisterLandlordBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var binding: FragmentRegisterLandlordBinding = DataBindingUtil.setContentView(activity!!, R.layout.fragment_register_landlord)
+        binding = DataBindingUtil.setContentView(activity!!, R.layout.fragment_register_landlord)
         val viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
         binding.viewModel = viewModel
         viewModel.authListener = this
@@ -75,18 +75,18 @@ class RegisterLandlordFragment : Fragment(), AuthListener {
     }
 
     override fun onStarted() {
-        context!!.toastShort("Registration initiated")
+        binding.root.context.toastShort("Registration initiated")
     }
 
     override fun onSuccess(response: LiveData<String>) {
         response.observe(this, Observer {
-            context!!.toastShort("Registration successful")
-            startActivity(Intent(context, LoginActivity::class.java))
+            binding.root.context.toastShort("Registration successful")
+            binding.root.context.startActivity(Intent(context, LoginActivity::class.java))
         })
     }
 
     override fun onFailure(message: String) {
-        context!!.toastShort(message)
+        binding.root.context.toastShort(message)
     }
 
 }

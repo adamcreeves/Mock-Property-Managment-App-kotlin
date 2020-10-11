@@ -17,6 +17,7 @@ import com.example.mockpropertymanagmentapp.data.network.MyApi
 import com.example.mockpropertymanagmentapp.data.models.RegisterResponse
 import com.example.mockpropertymanagmentapp.data.models.Tenant
 import com.example.mockpropertymanagmentapp.databinding.FragmentRegisterLandlordBinding
+import com.example.mockpropertymanagmentapp.databinding.FragmentRegisterTenantBinding
 import com.example.mockpropertymanagmentapp.helpers.toastShort
 import com.example.mockpropertymanagmentapp.ui.auth.AuthListener
 import com.example.mockpropertymanagmentapp.ui.auth.AuthViewModel
@@ -27,11 +28,12 @@ import retrofit2.Response
 
 
 class RegisterTenantFragment : Fragment(), AuthListener {
+    lateinit var binding: FragmentRegisterTenantBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var binding: FragmentRegisterLandlordBinding = DataBindingUtil.setContentView(activity!!, R.layout.fragment_register_tenant)
+        binding= DataBindingUtil.setContentView(activity!!, R.layout.fragment_register_tenant)
         val viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
         binding.viewModel = viewModel
         viewModel.authListener = this
@@ -74,18 +76,18 @@ class RegisterTenantFragment : Fragment(), AuthListener {
     }
 
     override fun onStarted() {
-        context!!.toastShort("Registration initiated")
+        binding.root.context.toastShort("Registration initiated")
     }
 
     override fun onSuccess(response: LiveData<String>) {
         response.observe(this, Observer {
-            context!!.toastShort("Registration successful")
-            startActivity(Intent(context, LoginActivity::class.java))
+            binding.root.context.toastShort("Registration successful")
+            binding.root.context.startActivity(Intent(context, LoginActivity::class.java))
         })
     }
 
     override fun onFailure(message: String) {
-        context!!.toastShort(message)
+        binding.root.context.toastShort(message)
     }
 }
 
