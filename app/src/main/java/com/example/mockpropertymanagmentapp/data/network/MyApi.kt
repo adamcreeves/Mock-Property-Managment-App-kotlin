@@ -33,6 +33,7 @@ interface MyApi {
             return Retrofit.Builder()
                 .baseUrl(Config.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(ApiMiddleman.client)
                 .build()
                 .create(MyApi::class.java)
         }

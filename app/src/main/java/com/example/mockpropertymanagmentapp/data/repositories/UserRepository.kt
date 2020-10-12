@@ -1,11 +1,13 @@
 package com.example.mockpropertymanagmentapp.data.repositories
 
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mockpropertymanagmentapp.data.models.*
 import com.example.mockpropertymanagmentapp.data.network.MyApi
+import com.example.mockpropertymanagmentapp.helpers.SessionManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
@@ -78,6 +80,7 @@ class UserRepository {
                 ) {
                     if(response.isSuccessful){
                         registerResponse.value = "Registered Landlord successful"
+
                     }
                 }
 

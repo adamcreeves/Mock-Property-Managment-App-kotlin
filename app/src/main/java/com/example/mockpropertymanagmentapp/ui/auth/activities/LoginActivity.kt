@@ -52,7 +52,8 @@ class LoginActivity : AppCompatActivity(), AuthListener {
     override fun onSuccess(response: LiveData<String>) {
         response.observe(this, Observer {
             this.toastShort("Login successfull")
-            sessionManager.saveUserLogin(response.toString())
+            Log.d("abc", response.value.toString())
+            sessionManager.saveUserLogin(response.value.toString())
             startActivity(Intent(applicationContext, HomeActivity::class.java))
         })
 
