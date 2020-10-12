@@ -1,10 +1,14 @@
 package com.example.mockpropertymanagmentapp.data.repositories
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mockpropertymanagmentapp.data.models.*
 import com.example.mockpropertymanagmentapp.data.network.MyApi
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -83,4 +87,19 @@ class UserRepository {
             })
         return registerResponse
     }
+    fun getProperties() {
+        MyApi().getProperties()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object: DisposableSingleObserver<PropertiesResponse>(){
+                override fun onSuccess(t: PropertiesResponse) {
+                    Log.d("abc", "Get Properties successful")
+                }
+                override fun onError(e: Throwable) {
+                    Log.d("abc", "Get Properties did not work")
+                }
+
+            })
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.mockpropertymanagmentapp.data.network
 
 import com.example.mockpropertymanagmentapp.app.Config
 import com.example.mockpropertymanagmentapp.data.models.*
+import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,6 +24,9 @@ interface MyApi {
 //
 //    @DELETE("")
 //    fun deleteUser(@Path("id") id: Int)
+
+    @GET("property")
+    fun getProperties() : Single<PropertiesResponse>
 
     companion object {
         operator fun invoke() : MyApi {
