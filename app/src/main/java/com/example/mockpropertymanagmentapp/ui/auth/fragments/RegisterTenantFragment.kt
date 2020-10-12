@@ -27,17 +27,20 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class RegisterTenantFragment : Fragment(), AuthListener {
-    lateinit var binding: FragmentRegisterTenantBinding
+class RegisterTenantFragment : Fragment()/*, AuthListener */ {
+    //    lateinit var binding: FragmentRegisterTenantBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= DataBindingUtil.setContentView(activity!!, R.layout.fragment_register_tenant)
-        val viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
-        binding.viewModel = viewModel
-        viewModel.authListener = this
-        return binding.root
+//        binding = DataBindingUtil.setContentView(activity!!, R.layout.fragment_register_tenant)
+//        val viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
+//        binding.viewModel = viewModel
+//        viewModel.authListener = this
+//        return binding.root
+        val view = inflater.inflate(R.layout.fragment_register_tenant, container, false)
+        init(view)
+        return view
     }
 
     private fun init(view: View) {
@@ -52,16 +55,19 @@ class RegisterTenantFragment : Fragment(), AuthListener {
             if (password == confirmPassword && password.length > 5) {
                 var tenant = Tenant(email, landlordEmail, name, password, type)
                 api.registerTenant(tenant)
-                    .enqueue(object: Callback<RegisterResponse> {
+                    .enqueue(object : Callback<RegisterResponse> {
                         override fun onResponse(
                             call: Call<RegisterResponse>,
                             response: Response<RegisterResponse>
                         ) {
-                            Toast.makeText(activity, "Registration Successful", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "Registration Successful", Toast.LENGTH_SHORT)
+                                .show()
                             context!!.startActivity(Intent(context, LoginActivity::class.java))
                         }
+
                         override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                            Toast.makeText(activity, "Registration Failed", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "Registration Failed", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     })
             } else Toast.makeText(
@@ -70,25 +76,25 @@ class RegisterTenantFragment : Fragment(), AuthListener {
                 Toast.LENGTH_SHORT
             ).show()
         }
-        view.button_register_tenant_to_login.setOnClickListener{
+        view.button_register_tenant_to_login.setOnClickListener {
             context!!.startActivity(Intent(context, LoginActivity::class.java))
         }
     }
 
-    override fun onStarted() {
-        binding.root.context.toastShort("Registration initiated")
-    }
-
-    override fun onSuccess(response: LiveData<String>) {
-        response.observe(this, Observer {
-            binding.root.context.toastShort("Registration successful")
-            binding.root.context.startActivity(Intent(context, LoginActivity::class.java))
-        })
-    }
-
-    override fun onFailure(message: String) {
-        binding.root.context.toastShort(message)
-    }
+//    override fun onStarted() {
+//        binding.root.context.toastShort("Registration initiated")
+//    }
+//
+//    override fun onSuccess(response: LiveData<String>) {
+//        response.observe(this, Observer {
+//            binding.root.context.toastShort("Registration successful")
+//            binding.root.context.startActivity(Intent(context, LoginActivity::class.java))
+//        })
+//    }
+//
+//    override fun onFailure(message: String) {
+//        binding.root.context.toastShort(message)
+//    }
 }
 
 
