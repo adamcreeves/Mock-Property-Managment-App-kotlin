@@ -1,6 +1,7 @@
 package com.example.mockpropertymanagmentapp.data.repositories
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -90,6 +91,7 @@ class UserRepository {
             })
         return registerResponse
     }
+    @SuppressLint("CheckResult")
     fun getProperties() {
         MyApi().getProperties()
             .subscribeOn(Schedulers.io())

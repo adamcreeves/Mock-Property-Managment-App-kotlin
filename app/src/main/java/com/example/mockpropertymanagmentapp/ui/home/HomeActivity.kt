@@ -1,13 +1,11 @@
 package com.example.mockpropertymanagmentapp.ui.home
 
-import android.content.DialogInterface
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.example.mockpropertymanagmentapp.R
-import com.example.mockpropertymanagmentapp.data.network.MyApi
-import com.example.mockpropertymanagmentapp.data.repositories.UserRepository
 import com.example.mockpropertymanagmentapp.ui.otheractivities.PropertyActivity
 import com.example.mockpropertymanagmentapp.ui.otheractivities.StartActivity
 import com.example.mockpropertymanagmentapp.helpers.SessionManager
@@ -32,21 +30,16 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun dialogLogout() {
-        var builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this)
         builder.setTitle("Confirm Log Out")
         builder.setMessage("Are you sure you want to log out?")
-        builder.setNegativeButton("No", object : DialogInterface.OnClickListener {
-            override fun onClick(dialog: DialogInterface?, p1: Int) {
-                dialog?.dismiss()
-            }
-        })
-        builder.setPositiveButton("Yes", object : DialogInterface.OnClickListener {
-            override fun onClick(p0: DialogInterface?, p1: Int) {
-                sessionManager.logout()
-                startActivity(Intent(applicationContext, StartActivity::class.java))
-            }
-        })
-        var myAlertDialog = builder.create()
+        builder.setNegativeButton("No"
+        ) { dialog, p1 -> dialog?.dismiss() }
+        builder.setPositiveButton("Yes") { p0, p1 ->
+            sessionManager.logout()
+            startActivity(Intent(applicationContext, StartActivity::class.java))
+        }
+        val myAlertDialog = builder.create()
         myAlertDialog.show()
     }
 
