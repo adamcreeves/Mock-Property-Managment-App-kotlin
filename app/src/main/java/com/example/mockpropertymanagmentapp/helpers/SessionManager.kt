@@ -1,6 +1,8 @@
 package com.example.mockpropertymanagmentapp.helpers
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.support.v4.media.session.MediaSessionCompat.KEY_TOKEN
 
 class SessionManager(private var myContext: Context) {
     private val FILE_NAME = "REGISTERED_USERS"
@@ -13,9 +15,9 @@ class SessionManager(private var myContext: Context) {
         editor.commit()
     }
 
-    fun getQuickLogin() : Boolean {
+    fun getQuickLogin(): Boolean {
         var token = sharedPreferences.getString(KEY_TOKEN, null)
-        return token !=null
+        return token != null
     }
 
     fun logout() {
@@ -23,4 +25,8 @@ class SessionManager(private var myContext: Context) {
         editor.commit()
     }
 
+    companion object {
+        @SuppressLint("RestrictedApi")
+        const val TOKEN = KEY_TOKEN
+    }
 }

@@ -3,6 +3,7 @@ package com.example.mockpropertymanagmentapp.data.network
 import android.content.SharedPreferences
 import android.widget.ShareActionProvider
 import com.example.mockpropertymanagmentapp.app.Config
+import com.example.mockpropertymanagmentapp.helpers.SessionManager.Companion.TOKEN
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -28,7 +29,7 @@ object ApiMiddleman {
                         val requestBuilder = original.newBuilder()
                             .addHeader(
                                 "Authorization",
-                                "Bearer " + Config.TOKEN
+                                "Bearer $TOKEN"
                             )
                             .addHeader("Content-Type", "application/json")
                             .addHeader("Accept", "application/json")
