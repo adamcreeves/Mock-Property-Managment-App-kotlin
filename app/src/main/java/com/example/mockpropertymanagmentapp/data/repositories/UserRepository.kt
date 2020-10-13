@@ -12,9 +12,14 @@ import com.example.mockpropertymanagmentapp.helpers.SessionManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 class UserRepository {
     fun login(email: String, password: String): LiveData<String> {
@@ -96,15 +101,23 @@ class UserRepository {
         MyApi().getProperties()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object: DisposableSingleObserver<PropertiesResponse>(){
-                override fun onSuccess(t: PropertiesResponse) {
-                    Log.d("abc", "Get Properties successful")
-                }
+            .subscribeWith(object: DisposableSingleObserver<ResponseBody>(){
                 override fun onError(e: Throwable) {
                     Log.d("abc", "Get Properties did not work")
                 }
 
+                override fun onSuccess(t: ResponseBody) {
+                    Log.d("abc", "Get Properties successful")
+                }
+
             })
     }
+    fun postNewImage(path: String) {
+        var file = File(path)
+        var requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file)
+        var body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+        MyApi().postNewImage(body)
+    }
+
 
 }

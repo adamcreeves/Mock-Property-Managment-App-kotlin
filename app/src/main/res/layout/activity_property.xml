@@ -25,10 +25,19 @@
             android:layout_height="wrap_content"
             android:text="Add New Property" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_properties"
+        <Button
+            android:id="@+id/button_add_photo_demo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:text="Add Photo Demo" />
+
+        <ImageView
+            android:id="@+id/image_view_demo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp" />
+
 
         </LinearLayout>
 

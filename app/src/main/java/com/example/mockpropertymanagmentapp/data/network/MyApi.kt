@@ -3,6 +3,8 @@ package com.example.mockpropertymanagmentapp.data.network
 import com.example.mockpropertymanagmentapp.app.Config
 import com.example.mockpropertymanagmentapp.data.models.*
 import io.reactivex.Single
+import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,8 +27,15 @@ interface MyApi {
 //    @DELETE("")
 //    fun deleteUser(@Path("id") id: Int)
 
+    @Multipart
+    @POST("upload/property/picture")
+    fun postNewImage(
+        @Part image: MultipartBody.Part
+    ) : Call<ResponseBody>
+
+
     @GET("property")
-    fun getProperties() : Single<PropertiesResponse>
+    fun getProperties() : Single<ResponseBody>
 
     companion object {
         operator fun invoke() : MyApi {
