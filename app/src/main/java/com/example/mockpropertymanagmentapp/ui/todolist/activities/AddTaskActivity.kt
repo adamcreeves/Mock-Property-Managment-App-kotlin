@@ -1,4 +1,4 @@
-package com.example.mockpropertymanagmentapp.ui.otheractivities
+package com.example.mockpropertymanagmentapp.ui.todolist.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

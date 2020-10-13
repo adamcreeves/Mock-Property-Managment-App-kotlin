@@ -1,4 +1,4 @@
-package com.example.mockpropertymanagmentapp.adapters
+package com.example.mockpropertymanagmentapp.ui.auth.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
