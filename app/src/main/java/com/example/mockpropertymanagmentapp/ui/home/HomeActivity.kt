@@ -9,6 +9,7 @@ import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.ui.otheractivities.PropertyActivity
 import com.example.mockpropertymanagmentapp.ui.otheractivities.StartActivity
 import com.example.mockpropertymanagmentapp.helpers.SessionManager
+import com.example.mockpropertymanagmentapp.ui.otheractivities.ToDoListActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -26,6 +27,9 @@ class HomeActivity : AppCompatActivity() {
         }
         button_home_logout.setOnClickListener{
             dialogLogout()
+        }
+        button_to_add_task.setOnClickListener{
+            startActivity(Intent(this, ToDoListActivity::class.java))
         }
     }
 

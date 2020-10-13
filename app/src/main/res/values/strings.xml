@@ -31,4 +31,6 @@
     <string name="open_gallery">Open Gallery</string>
     <string name="full_name1">Full Name</string>
     <string name="already_registered">Already Registered?</string>
+    <string name="add_new_property">Add New Property</string>
+    <string name="add_task_for_to_do_list">Add Task for To Do List</string>
 </resources>
