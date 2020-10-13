@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "261547503734",
+    "firebase_url": "https://mockpropertymanagmentapp.firebaseio.com",
+    "project_id": "mockpropertymanagmentapp",
+    "storage_bucket": "mockpropertymanagmentapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261547503734:android:f55f83b558931f8fb36f57",
+        "android_client_info": {
+          "package_name": "com.example.mockpropertymanagmentapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261547503734-5iqdt5829u8icvr09c2r5nmlkdet44pn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt2P2w8_g7SYzJ5-Euev81q_tTWwDMPe4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261547503734-5iqdt5829u8icvr09c2r5nmlkdet44pn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
