@@ -17,7 +17,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="15dp"
         android:text="@string/home_page"
-        android:textColor="@color/colorTextWhite"
+        android:textColor="@color/colorAccent4"
         android:textSize="30sp"
         android:textStyle="bold" />
 

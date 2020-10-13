@@ -8,6 +8,8 @@ import androidx.appcompat.app.AlertDialog
 import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.helpers.SessionManager
 import com.example.mockpropertymanagmentapp.ui.otheractivities.*
+import com.example.mockpropertymanagmentapp.ui.properties.activities.PropertyActivity
+import com.example.mockpropertymanagmentapp.ui.todolist.activities.ToDoListActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {

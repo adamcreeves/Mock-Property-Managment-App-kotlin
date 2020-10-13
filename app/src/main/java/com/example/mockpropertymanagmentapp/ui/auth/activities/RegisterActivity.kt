@@ -3,7 +3,7 @@ package com.example.mockpropertymanagmentapp.ui.auth.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.mockpropertymanagmentapp.R
-import com.example.mockpropertymanagmentapp.adapters.AdapterFragments
+import com.example.mockpropertymanagmentapp.ui.auth.adapters.AdapterFragments
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
