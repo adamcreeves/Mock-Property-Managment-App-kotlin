@@ -27,91 +27,10 @@ class PropertyActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        val bottomSheetDialog = BottomSheetDialog(this)
-        val view = layoutInflater.inflate(R.layout.property_bottom_sheet, null)
-        bottomSheetDialog.setContentView(view)
-        button_property_add_photo.setOnClickListener{
-            bottomSheetDialog.show()
-        }
-        view.button_to_camera.setOnClickListener{
-            requestCameraPermission()
-        }
-        view.button_to_gallery.setOnClickListener{
-            requestGalleryPermissions()
+        button_property_to_add_property.setOnClickListener{
+            startActivity(Intent(this, AddNewPropertyActivity::class.java))
         }
     }
-
-    private fun requestGalleryPermissions() {
-        Dexter.withContext(this)
-            .withPermissions(
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            )
-            .withListener(object : MultiplePermissionsListener {
-                override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-                    if (report!!.areAllPermissionsGranted()) {
-                        openTheGallery()
-                        Toast.makeText(
-                            applicationContext,
-                            "Gallery Access Granted",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                    if (report.isAnyPermissionPermanentlyDenied) {
-                        Toast.makeText(
-                            applicationContext,
-                            "Gallery Permission Denied",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-
-                override fun onPermissionRationaleShouldBeShown(
-                    p0: MutableList<PermissionRequest>?,
-                    token: PermissionToken?
-                ) {
-                    token?.continuePermissionRequest()
-                }
-
-            }).onSameThread()
-            .check()
-    }
-
-    private fun openTheGallery() {
-        var intent = Intent()
-        intent.action = Intent.ACTION_GET_CONTENT
-        intent.type = "image/*"
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
-    }
-
-    private fun requestCameraPermission() {
-        Dexter.withContext(this)
-            .withPermission(Manifest.permission.CAMERA)
-            .withListener(object: PermissionListener{
-                override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                    Toast.makeText(applicationContext, "Camera Access Granted", Toast.LENGTH_SHORT).show()
-                    openTheCamera()
-                }
-
-                override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                    Toast.makeText(applicationContext, "Camera Access Denied", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onPermissionRationaleShouldBeShown(
-                    p0: PermissionRequest?,
-                    token: PermissionToken?
-                ) {
-                    token?.continuePermissionRequest()
-                }
-
-            }).check()
-    }
-    private fun openTheCamera() {
-        var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivity(intent)
-    }
-
 
 
 }

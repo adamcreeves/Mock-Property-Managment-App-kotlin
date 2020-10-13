@@ -6,10 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.example.mockpropertymanagmentapp.R
-import com.example.mockpropertymanagmentapp.ui.otheractivities.PropertyActivity
-import com.example.mockpropertymanagmentapp.ui.otheractivities.StartActivity
 import com.example.mockpropertymanagmentapp.helpers.SessionManager
-import com.example.mockpropertymanagmentapp.ui.otheractivities.ToDoListActivity
+import com.example.mockpropertymanagmentapp.ui.otheractivities.*
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -22,14 +20,35 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        button_to_add_property.setOnClickListener{
-            startActivity(Intent(this, PropertyActivity::class.java))
-        }
         button_home_logout.setOnClickListener{
             dialogLogout()
         }
-        button_to_add_task.setOnClickListener{
+        button_home_properties.setOnClickListener{
+            startActivity(Intent(this, PropertyActivity::class.java))
+        }
+        button_home_todo_list.setOnClickListener{
             startActivity(Intent(this, ToDoListActivity::class.java))
+        }
+        button_home_collect_rent.setOnClickListener{
+            startActivity(Intent(this, CollectRentActivity::class.java))
+        }
+        button_home_documents.setOnClickListener{
+            startActivity(Intent(this, DocumentActivity::class.java))
+        }
+        button_home_tenants.setOnClickListener{
+            startActivity(Intent(this, TenantsActivity::class.java))
+        }
+        button_home_transactions.setOnClickListener{
+            startActivity(Intent(this, TransactionsActivity::class.java))
+        }
+        button_home_trips.setOnClickListener{
+            startActivity(Intent(this, TripActivity::class.java))
+        }
+        button_home_alerts.setOnClickListener{
+            startActivity(Intent(this, AlertsActivity::class.java))
+        }
+        button_home_vendors.setOnClickListener{
+            startActivity(Intent(this, VendorsActivity::class.java))
         }
     }
 
