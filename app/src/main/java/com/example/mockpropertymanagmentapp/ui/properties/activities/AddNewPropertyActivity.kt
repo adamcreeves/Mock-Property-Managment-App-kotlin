@@ -1,8 +1,11 @@
 package com.example.mockpropertymanagmentapp.ui.properties.activities
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -13,6 +16,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.mockpropertymanagmentapp.R
+import com.example.mockpropertymanagmentapp.data.repositories.UserRepository
 import com.example.mockpropertymanagmentapp.databinding.ActivityAddNewPropertyBinding
 import com.example.mockpropertymanagmentapp.databinding.ActivityLoginBinding
 import com.example.mockpropertymanagmentapp.helpers.toastShort
@@ -31,6 +35,7 @@ import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_add_new_property.*
 import kotlinx.android.synthetic.main.activity_property.*
 import kotlinx.android.synthetic.main.property_bottom_sheet.view.*
+import java.io.ByteArrayOutputStream
 
 class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,14 +103,16 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
         var intent = Intent()
         intent.action = Intent.ACTION_PICK
         intent.type = "image/*"
-        startActivityForResult(intent, 200)
+        startActivityForResult(intent, 202)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 200) {
+        if(requestCode == 203) {
             var bmp = data?.extras!!.get("data") as Bitmap
-
+            var uri = getImageUri(this, bmp)
+            var imagePath = getRealPathFromURI(uri)
+            UserRepository().postNewImage(imagePath!!)
         }
     }
 
@@ -133,7 +140,7 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
     }
     private fun openTheCamera() {
         var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, 200)
+        startActivityForResult(intent, 203)
     }
 
     override fun onStarted() {
@@ -152,5 +159,22 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
         this.toastShort(message)
     }
 
+
+    // get URI from bitmap
+    fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path: String =
+            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
+        return Uri.parse(path)
+    }
+
+    // get actual path
+    fun getRealPathFromURI(uri: Uri?): String? {
+        val cursor: Cursor? = contentResolver.query(uri!!, null, null, null, null)
+        cursor!!.moveToFirst()
+        val idx: Int = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+        return cursor.getString(idx)
+    }
 
 }
