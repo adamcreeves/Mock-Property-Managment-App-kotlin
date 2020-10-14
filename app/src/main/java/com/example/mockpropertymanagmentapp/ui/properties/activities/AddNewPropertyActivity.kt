@@ -17,10 +17,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.mockpropertymanagmentapp.R
-import com.example.mockpropertymanagmentapp.data.models.UploadPictureResponse
+import com.example.mockpropertymanagmentapp.data.models.*
 import com.example.mockpropertymanagmentapp.data.network.MyApi
 import com.example.mockpropertymanagmentapp.data.repositories.UserRepository
-import com.example.mockpropertymanagmentapp.databinding.ActivityAddNewPropertyBinding
 import com.example.mockpropertymanagmentapp.databinding.ActivityLoginBinding
 import com.example.mockpropertymanagmentapp.helpers.SessionManager
 import com.example.mockpropertymanagmentapp.helpers.toastShort
@@ -52,10 +51,7 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
     lateinit var sessionManager: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityAddNewPropertyBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_new_property)
-        val viewModel = ViewModelProviders.of(this).get(PropertiesViewModel::class.java)
-        binding.viewModel = viewModel
-        viewModel.propertiesListener = this
+        setContentView(R.layout.activity_add_new_property)
         sessionManager = SessionManager(this)
         init()
     }
@@ -64,14 +60,39 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
         val bottomSheetDialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.property_bottom_sheet, null)
         bottomSheetDialog.setContentView(view)
-        button_add_new_property_add_photo.setOnClickListener{
+        button_add_new_property_add_photo.setOnClickListener {
             bottomSheetDialog.show()
         }
-        view.button_to_camera.setOnClickListener{
+        view.button_to_camera.setOnClickListener {
             requestCameraPermission()
         }
-        view.button_to_gallery.setOnClickListener{
+        view.button_to_gallery.setOnClickListener {
             requestGalleryPermissions()
+        }
+        button_add_new_property_save.setOnClickListener {
+            var address = edit_text_address.text.toString()
+            var city = edit_text_city.text.toString()
+            var state = edit_text_state.text.toString()
+            var country = edit_text_country.text.toString()
+            var purchasePrice = edit_text_price.text.toString()
+            var imageUrl = sessionManager.getImageUrl()
+            MyApi().addProperty(Prop(address = address, city = city, state = state, country = country, purchasePrice = purchasePrice, image = imageUrl))
+                .enqueue(object: Callback<AddPropertyResponse>{
+                    override fun onResponse(
+                        call: Call<AddPropertyResponse>,
+                        response: Response<AddPropertyResponse>
+                    ) {
+                        if(response.isSuccessful){
+                            Toast.makeText(applicationContext, "Property Added Successfully", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<AddPropertyResponse>, t: Throwable) {
+                        Toast.makeText(applicationContext, "Property Not Added", Toast.LENGTH_SHORT).show()
+                    }
+
+                })
         }
     }
 
@@ -127,8 +148,6 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
             var imagePath = getRealPathFromURI(uri)
             postNewImage(imagePath!!)
         }
-        var imageUrl = sessionManager.getImageUrl()
-        Log.d("aaa", imageUrl)
     }
 
     private fun postNewImage(path: String) {

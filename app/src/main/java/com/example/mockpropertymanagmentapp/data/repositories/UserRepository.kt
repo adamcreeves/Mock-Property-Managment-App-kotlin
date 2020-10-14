@@ -97,19 +97,18 @@ class UserRepository {
 
     fun addNewProperty(address: String, city: String, state: String, country: String, purchasePrice: String) : LiveData<String> {
         var propertiesResponse = MutableLiveData<String>()
-        var property = Property(address = address, city = city, state = state, country = country, purchasePrice = purchasePrice)
+        var property = Prop(address = address, city = city, state = state, country = country, purchasePrice = purchasePrice)
         MyApi().addProperty(property)
-            .enqueue(object: Callback<PropertiesResponse>{
+            .enqueue(object: Callback<AddPropertyResponse>{
                 override fun onResponse(
-                    call: Call<PropertiesResponse>,
-                    response: Response<PropertiesResponse>
+                    call: Call<AddPropertyResponse>,
+                    response: Response<AddPropertyResponse>
                 ) {
                     if(response.isSuccessful){
                         propertiesResponse.value = "Property added to API"
                     }
                 }
-
-                override fun onFailure(call: Call<PropertiesResponse>, t: Throwable) {
+                override fun onFailure(call: Call<AddPropertyResponse>, t: Throwable) {
                     propertiesResponse.value = t.message
                 }
             })

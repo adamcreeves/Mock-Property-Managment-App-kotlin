@@ -22,7 +22,7 @@ interface MyApi {
     fun registerTenant(@Body tenant: Tenant) : Call<RegisterResponse>
 
     @POST("property")
-    fun addProperty(@Body property: Property) : Call<PropertiesResponse>
+    fun addProperty(@Body property: Prop) : Call<AddPropertyResponse>
 
 //    @PUT("")
 //    fun updateUser(@Body user: User, @Query("id") id: Int)
