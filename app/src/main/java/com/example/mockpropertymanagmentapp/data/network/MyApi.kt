@@ -36,7 +36,7 @@ interface MyApi {
         @Part image: MultipartBody.Part
     ) : Call<UploadPictureResponse>
 
-@GET("property")
+@GET("property/user/${Config.PROPERTIES_USERID}" )
 fun getUserProperties() : Call<PropertiesResponse>
 
     companion object {

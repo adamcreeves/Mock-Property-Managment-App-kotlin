@@ -21,9 +21,5 @@ class PropertiesViewModel : ViewModel() {
 //            propertiesListener?.onFailure("Properties were not retrieved")
 //        }
 //    }
-    fun onAddPropertyClicked(view: View) {
-        Log.d("abc", "Property is being added")
-        var propertiesResponse = UserRepository().addNewProperty(address!!, city!!, state!!, country!!, purchasePrice!!)
-        propertiesListener?.onSuccessful(propertiesResponse)
-    }
+
 }

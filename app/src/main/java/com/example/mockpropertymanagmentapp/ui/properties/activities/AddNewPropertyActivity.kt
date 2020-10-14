@@ -36,7 +36,6 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_add_new_property.*
-import kotlinx.android.synthetic.main.activity_property.*
 import kotlinx.android.synthetic.main.property_bottom_sheet.view.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
