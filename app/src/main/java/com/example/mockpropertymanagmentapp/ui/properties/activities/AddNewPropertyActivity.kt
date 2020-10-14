@@ -13,12 +13,16 @@ import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.mockpropertymanagmentapp.R
+import com.example.mockpropertymanagmentapp.data.models.UploadPictureResponse
+import com.example.mockpropertymanagmentapp.data.network.MyApi
 import com.example.mockpropertymanagmentapp.data.repositories.UserRepository
 import com.example.mockpropertymanagmentapp.databinding.ActivityAddNewPropertyBinding
 import com.example.mockpropertymanagmentapp.databinding.ActivityLoginBinding
+import com.example.mockpropertymanagmentapp.helpers.SessionManager
 import com.example.mockpropertymanagmentapp.helpers.toastShort
 import com.example.mockpropertymanagmentapp.ui.home.HomeActivity
 import com.example.mockpropertymanagmentapp.ui.properties.PropertiesListener
@@ -35,15 +39,24 @@ import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_add_new_property.*
 import kotlinx.android.synthetic.main.activity_property.*
 import kotlinx.android.synthetic.main.property_bottom_sheet.view.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.ByteArrayOutputStream
+import java.io.File
 
 class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
+    lateinit var sessionManager: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityAddNewPropertyBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_new_property)
         val viewModel = ViewModelProviders.of(this).get(PropertiesViewModel::class.java)
         binding.viewModel = viewModel
         viewModel.propertiesListener = this
+        sessionManager = SessionManager(this)
         init()
     }
 
@@ -108,12 +121,34 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 203) {
+        if(requestCode == 203 || requestCode == 202) {
             var bmp = data?.extras!!.get("data") as Bitmap
             var uri = getImageUri(this, bmp)
             var imagePath = getRealPathFromURI(uri)
-            UserRepository().postNewImage(imagePath!!)
+            postNewImage(imagePath!!)
         }
+        var imageUrl = sessionManager.getImageUrl()
+        Log.d("aaa", imageUrl)
+    }
+
+    private fun postNewImage(path: String) {
+        var file = File(path)
+        var requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file)
+        var body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+        MyApi().postNewImage(body)
+            .enqueue(object: Callback<UploadPictureResponse> {
+                override fun onResponse(
+                    call: Call<UploadPictureResponse>,
+                    response: Response<UploadPictureResponse>
+                ) {
+                    if(response.isSuccessful){
+                        Log.d("bbb", response.body()!!.data.location)
+                        sessionManager.saveImageUrl(response.body()!!.data.location)
+                    }
+                }
+                override fun onFailure(call: Call<UploadPictureResponse>, t: Throwable) {
+                }
+            })
     }
 
     private fun requestCameraPermission() {

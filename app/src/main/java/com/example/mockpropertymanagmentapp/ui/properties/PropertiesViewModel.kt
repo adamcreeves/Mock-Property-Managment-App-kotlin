@@ -3,6 +3,7 @@ package com.example.mockpropertymanagmentapp.ui.properties
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
+import com.example.mockpropertymanagmentapp.data.models.User
 import com.example.mockpropertymanagmentapp.data.repositories.UserRepository
 
 class PropertiesViewModel : ViewModel() {

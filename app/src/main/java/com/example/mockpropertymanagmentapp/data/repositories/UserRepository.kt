@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mockpropertymanagmentapp.data.models.*
 import com.example.mockpropertymanagmentapp.data.network.MyApi
+import com.example.mockpropertymanagmentapp.helpers.SessionManager
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -15,7 +16,6 @@ import retrofit2.Response
 import java.io.File
 
 class UserRepository {
-    lateinit var imageUrl: String
     var userId: String? = null
     fun login(email: String, password: String): LiveData<String> {
         var loginResponse = MutableLiveData<String>()
@@ -94,32 +94,10 @@ class UserRepository {
         return registerResponse
     }
 
-    fun postNewImage(path: String) {
-        var file = File(path)
-        var requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file)
-        var body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-        MyApi().postNewImage(body)
-            .enqueue(object: Callback<UploadPictureResponse>{
-                override fun onResponse(
-                    call: Call<UploadPictureResponse>,
-                    response: Response<UploadPictureResponse>
-                ) {
-                    if(response.isSuccessful){
-                        Log.d("bbb", response.body()!!.data.location)
-                        imageUrl = response.body()!!.data.location
-                    }
-                }
-
-                override fun onFailure(call: Call<UploadPictureResponse>, t: Throwable) {
-
-                }
-
-            })
-    }
 
     fun addNewProperty(address: String, city: String, state: String, country: String, purchasePrice: String) : LiveData<String> {
         var propertiesResponse = MutableLiveData<String>()
-        var property = Property(address = address, city = city, state = state, country = country, purchasePrice = purchasePrice, image = imageUrl)
+        var property = Property(address = address, city = city, state = state, country = country, purchasePrice = purchasePrice)
         MyApi().addProperty(property)
             .enqueue(object: Callback<PropertiesResponse>{
                 override fun onResponse(

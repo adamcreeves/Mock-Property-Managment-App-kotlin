@@ -8,6 +8,7 @@ class SessionManager(private var myContext: Context) {
     private val FILE_NAME = "REGISTERED_USERS"
     private val KEY_TOKEN = "token"
     private val KEY_USERID = "userId"
+    private val KEY_IMAGE = "image"
     var sharedPreferences = myContext.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
     var editor = sharedPreferences.edit()
 
@@ -19,6 +20,15 @@ class SessionManager(private var myContext: Context) {
     fun getQuickLogin(): Boolean {
         var token = sharedPreferences.getString(KEY_TOKEN, null)
         return token != null
+    }
+
+    fun saveImageUrl(image: String) {
+        editor.putString(KEY_IMAGE, image)
+        editor.commit()
+    }
+
+    fun getImageUrl() : String {
+        return sharedPreferences.getString(KEY_IMAGE, null).toString()
     }
 
     fun logout() {
