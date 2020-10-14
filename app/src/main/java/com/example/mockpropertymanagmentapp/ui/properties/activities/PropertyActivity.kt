@@ -7,7 +7,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mockpropertymanagmentapp.R
+import com.example.mockpropertymanagmentapp.data.models.PropertiesResponse
+import com.example.mockpropertymanagmentapp.data.models.Property
+import com.example.mockpropertymanagmentapp.databinding.ActivityPropertyBinding
+import com.example.mockpropertymanagmentapp.ui.properties.PropertiesListener
+import com.example.mockpropertymanagmentapp.ui.properties.PropertiesViewModel
+import com.example.mockpropertymanagmentapp.ui.properties.adapters.AdapterProperties
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -20,113 +31,44 @@ import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_property.*
 import kotlinx.android.synthetic.main.property_bottom_sheet.view.*
 
-class PropertyActivity : AppCompatActivity() {
+class PropertyActivity : AppCompatActivity(), PropertiesListener {
+    private var adapterProperties: AdapterProperties? = null
+    var myList: ArrayList<Property> = ArrayList()
+    lateinit var binding: ActivityPropertyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_property)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_property)
         init()
     }
 
     private fun init() {
-        button_property_to_add_property.setOnClickListener{
+        var viewModel = ViewModelProviders.of(this).get(PropertiesViewModel::class.java)
+        binding.viewModel = viewModel
+        viewModel.propertiesListener = this
+        adapterProperties = AdapterProperties(this, myList)
+        recycler_view_properties.layoutManager = LinearLayoutManager(this)
+        recycler_view_properties.adapter = adapterProperties
+
+        button_property_to_add_property.setOnClickListener {
             startActivity(Intent(this, AddNewPropertyActivity::class.java))
         }
 
 
-
-
-        val bottomSheetDialog = BottomSheetDialog(this)
-        val view = layoutInflater.inflate(R.layout.property_bottom_sheet, null)
-        bottomSheetDialog.setContentView(view)
-        button_add_photo_demo.setOnClickListener{
-            bottomSheetDialog.show()
-        }
-        view.button_to_camera.setOnClickListener{
-            requestCameraPermission()
-        }
-        view.button_to_gallery.setOnClickListener{
-            requestGalleryPermissions()
-        }
     }
 
-    private fun requestGalleryPermissions() {
-        Dexter.withContext(this)
-            .withPermissions(
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            )
-            .withListener(object : MultiplePermissionsListener {
-                override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-                    if (report!!.areAllPermissionsGranted()) {
-                        openTheGallery()
-                        Toast.makeText(
-                            applicationContext,
-                            "Gallery Access Granted",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                    if (report.isAnyPermissionPermanentlyDenied) {
-                        Toast.makeText(
-                            applicationContext,
-                            "Gallery Permission Denied",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-
-                override fun onPermissionRationaleShouldBeShown(
-                    p0: MutableList<PermissionRequest>?,
-                    token: PermissionToken?
-                ) {
-                    token?.continuePermissionRequest()
-                }
-
-            }).onSameThread()
-            .check()
+    override fun onStarted() {
+        Toast.makeText(this, "API call has begun", Toast.LENGTH_SHORT).show()
     }
 
-    private fun openTheGallery() {
-        var intent = Intent()
-        intent.action = Intent.ACTION_GET_CONTENT
-        intent.type = "image/*"
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivityForResult(intent, 200)
+    override fun onSuccessful(response: LiveData<ArrayList<Property>>) {
+        response.observe(this, Observer {
+            adapterProperties?.setData(it)
+            Toast.makeText(this, "Properties Retrieved", Toast.LENGTH_SHORT).show()
+        })
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 200) {
-            var bmp = data?.extras!!.get("data") as Bitmap
-            image_view_demo.setImageBitmap(bmp)
-        }
+    override fun onFailure(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
-
-    private fun requestCameraPermission() {
-        Dexter.withContext(this)
-            .withPermission(Manifest.permission.CAMERA)
-            .withListener(object: PermissionListener {
-                override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                    Toast.makeText(applicationContext, "Camera Access Granted", Toast.LENGTH_SHORT).show()
-                    openTheCamera()
-                }
-
-                override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                    Toast.makeText(applicationContext, "Camera Access Denied", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onPermissionRationaleShouldBeShown(
-                    p0: PermissionRequest?,
-                    token: PermissionToken?
-                ) {
-                    token?.continuePermissionRequest()
-                }
-
-            }).check()
-    }
-    private fun openTheCamera() {
-        var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, 200)
-    }
-
 
 }

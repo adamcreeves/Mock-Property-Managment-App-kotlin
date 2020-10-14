@@ -31,11 +31,10 @@ interface MyApi {
     @POST("upload/property/picture")
     fun postNewImage(
         @Part image: MultipartBody.Part
-    ) : Call<ResponseBody>
+    ) : Call<UploadPictureResponse>
 
-
-    @GET("property")
-    fun getProperties() : Single<ResponseBody>
+@GET("property/user/" + Config.PROPERTIES_USERID)
+fun getUserProperties() : Call<PropertiesResponse>
 
     companion object {
         operator fun invoke() : MyApi {

@@ -7,6 +7,7 @@ import android.support.v4.media.session.MediaSessionCompat.KEY_TOKEN
 class SessionManager(private var myContext: Context) {
     private val FILE_NAME = "REGISTERED_USERS"
     private val KEY_TOKEN = "token"
+    private val KEY_USERID = "userId"
     var sharedPreferences = myContext.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
     var editor = sharedPreferences.edit()
 

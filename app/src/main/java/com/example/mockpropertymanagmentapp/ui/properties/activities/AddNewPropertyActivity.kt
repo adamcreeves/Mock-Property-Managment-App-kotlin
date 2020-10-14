@@ -2,6 +2,7 @@ package com.example.mockpropertymanagmentapp.ui.properties.activities
 
 import android.Manifest
 import android.content.Intent
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -17,6 +18,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_add_new_property.*
+import kotlinx.android.synthetic.main.activity_property.*
 import kotlinx.android.synthetic.main.property_bottom_sheet.view.*
 
 class AddNewPropertyActivity : AppCompatActivity() {
@@ -40,6 +42,7 @@ class AddNewPropertyActivity : AppCompatActivity() {
             requestGalleryPermissions()
         }
     }
+
 
     private fun requestGalleryPermissions() {
         Dexter.withContext(this)
@@ -79,10 +82,17 @@ class AddNewPropertyActivity : AppCompatActivity() {
 
     private fun openTheGallery() {
         var intent = Intent()
-        intent.action = Intent.ACTION_GET_CONTENT
+        intent.action = Intent.ACTION_PICK
         intent.type = "image/*"
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
+        startActivityForResult(intent, 200)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 200) {
+            var bmp = data?.extras!!.get("data") as Bitmap
+
+        }
     }
 
     private fun requestCameraPermission() {
@@ -109,7 +119,8 @@ class AddNewPropertyActivity : AppCompatActivity() {
     }
     private fun openTheCamera() {
         var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivity(intent)
+        startActivityForResult(intent, 200)
     }
+
 
 }

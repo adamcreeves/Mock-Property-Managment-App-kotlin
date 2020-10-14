@@ -33,6 +33,7 @@ class UserRepository {
                 ) {
                     if (response.isSuccessful) {
                         loginResponse.value = response.body()!!.token
+                        loginResponse.value = response.body()!!.user._id
                     }
                 }
 
@@ -96,28 +97,44 @@ class UserRepository {
             })
         return registerResponse
     }
-    @SuppressLint("CheckResult")
-    fun getProperties() {
-        MyApi().getProperties()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object: DisposableSingleObserver<ResponseBody>(){
-                override fun onError(e: Throwable) {
-                    Log.d("abc", "Get Properties did not work")
-                }
 
-                override fun onSuccess(t: ResponseBody) {
-                    Log.d("abc", "Get Properties successful")
-                }
 
-            })
-    }
+
     fun postNewImage(path: String) {
         var file = File(path)
         var requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file)
         var body = MultipartBody.Part.createFormData("image", file.name, requestFile)
         MyApi().postNewImage(body)
+            .enqueue(object: Callback<UploadPictureResponse>{
+                override fun onResponse(
+                    call: Call<UploadPictureResponse>,
+                    response: Response<UploadPictureResponse>
+                ) {
+
+                }
+
+                override fun onFailure(call: Call<UploadPictureResponse>, t: Throwable) {
+
+                }
+
+            })
     }
 
-
+    fun getUserProperties() : LiveData<ArrayList<Property>> {
+        var propertyResponse = MutableLiveData<ArrayList<Property>>()
+        MyApi().getUserProperties()
+            .enqueue(object: Callback<PropertiesResponse>{
+                override fun onResponse(
+                    call: Call<PropertiesResponse>,
+                    response: Response<PropertiesResponse>
+                ) {
+                    if(response.isSuccessful)
+                        propertyResponse.value = response.body()!!.data as ArrayList<Property>
+                }
+                override fun onFailure(call: Call<PropertiesResponse>, t: Throwable) {
+                    Log.d("abc", t.message.toString())
+                }
+            })
+        return propertyResponse
+    }
 }
