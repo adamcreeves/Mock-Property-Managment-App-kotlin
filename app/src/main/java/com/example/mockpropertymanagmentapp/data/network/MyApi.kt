@@ -21,6 +21,9 @@ interface MyApi {
     @POST("auth/register")
     fun registerTenant(@Body tenant: Tenant) : Call<RegisterResponse>
 
+    @POST("property")
+    fun addProperty(@Body property: Property) : Call<PropertiesResponse>
+
 //    @PUT("")
 //    fun updateUser(@Body user: User, @Query("id") id: Int)
 //
@@ -33,7 +36,7 @@ interface MyApi {
         @Part image: MultipartBody.Part
     ) : Call<UploadPictureResponse>
 
-@GET("property/user/" + Config.PROPERTIES_USERID)
+@GET("property")
 fun getUserProperties() : Call<PropertiesResponse>
 
     companion object {

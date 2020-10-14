@@ -6,14 +6,14 @@ data class PropertiesResponse(
 )
 
 data class Property(
-    val __v: Int,
-    val _id: String,
-    val address: String?,
-    val city: String?,
-    val country: String?,
-    val image: String?,
-    val mortageInfo: Boolean,
-    val propertyStatus: Boolean,
-    val purchasePrice: String?,
-    val state: String?
+    val __v: Int? = null,
+    val _id: String? = null,
+    val address: String? = null,
+    val city: String? = null,
+    val country: String? = null,
+    val image: String? = null,
+    val mortageInfo: Boolean? = null,
+    val propertyStatus: Boolean? = null,
+    val purchasePrice: String? = null,
+    val state: String? = null
 )

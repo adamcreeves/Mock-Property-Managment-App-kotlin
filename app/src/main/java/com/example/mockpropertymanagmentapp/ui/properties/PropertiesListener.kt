@@ -5,6 +5,6 @@ import com.example.mockpropertymanagmentapp.data.models.Property
 
 interface PropertiesListener {
     fun onStarted()
-    fun onSuccessful(response: LiveData<ArrayList<Property>>)
+    fun onSuccessful(response: LiveData<String>)
     fun onFailure(message: String)
 }

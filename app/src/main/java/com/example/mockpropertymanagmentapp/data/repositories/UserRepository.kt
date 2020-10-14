@@ -33,7 +33,6 @@ class UserRepository {
                 ) {
                     if (response.isSuccessful) {
                         loginResponse.value = response.body()!!.token
-                        loginResponse.value = response.body()!!.user._id
                     }
                 }
 
@@ -98,7 +97,26 @@ class UserRepository {
         return registerResponse
     }
 
+    fun addNewProperty(address: String, city: String, state: String, country: String, purchasePrice: String) : LiveData<String> {
+        var propertiesResponse = MutableLiveData<String>()
+        var property = Property(address = address, city = city, state = state, country = country, purchasePrice = purchasePrice)
+        MyApi().addProperty(property)
+            .enqueue(object: Callback<PropertiesResponse>{
+                override fun onResponse(
+                    call: Call<PropertiesResponse>,
+                    response: Response<PropertiesResponse>
+                ) {
+                    if(response.isSuccessful){
+                        propertiesResponse.value = "Property added to API"
+                    }
+                }
 
+                override fun onFailure(call: Call<PropertiesResponse>, t: Throwable) {
+                    propertiesResponse.value = t.message
+                }
+            })
+        return propertiesResponse
+    }
 
     fun postNewImage(path: String) {
         var file = File(path)

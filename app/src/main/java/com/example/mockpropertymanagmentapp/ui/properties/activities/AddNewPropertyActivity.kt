@@ -6,8 +6,19 @@ import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.mockpropertymanagmentapp.R
+import com.example.mockpropertymanagmentapp.databinding.ActivityAddNewPropertyBinding
+import com.example.mockpropertymanagmentapp.databinding.ActivityLoginBinding
+import com.example.mockpropertymanagmentapp.helpers.toastShort
+import com.example.mockpropertymanagmentapp.ui.home.HomeActivity
+import com.example.mockpropertymanagmentapp.ui.properties.PropertiesListener
+import com.example.mockpropertymanagmentapp.ui.properties.PropertiesViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -21,10 +32,13 @@ import kotlinx.android.synthetic.main.activity_add_new_property.*
 import kotlinx.android.synthetic.main.activity_property.*
 import kotlinx.android.synthetic.main.property_bottom_sheet.view.*
 
-class AddNewPropertyActivity : AppCompatActivity() {
+class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_new_property)
+        val binding: ActivityAddNewPropertyBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_new_property)
+        val viewModel = ViewModelProviders.of(this).get(PropertiesViewModel::class.java)
+        binding.viewModel = viewModel
+        viewModel.propertiesListener = this
         init()
     }
 
@@ -120,6 +134,22 @@ class AddNewPropertyActivity : AppCompatActivity() {
     private fun openTheCamera() {
         var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, 200)
+    }
+
+    override fun onStarted() {
+        this.toastShort("Adding new property")
+    }
+
+    override fun onSuccessful(response: LiveData<String>) {
+        response.observe(this, Observer {
+            this.toastShort("Added new property successfully")
+            Log.d("abc", response.value.toString())
+            finish()
+        })
+    }
+
+    override fun onFailure(message: String) {
+        this.toastShort(message)
     }
 
 
