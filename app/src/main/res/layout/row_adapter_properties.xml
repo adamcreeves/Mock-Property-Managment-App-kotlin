@@ -20,31 +20,31 @@
         android:layout_alignParentRight="true">
 
         <TextView
-            android:id="@+id/text_view_id"
+            android:id="@+id/text_view_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Id"
+            android:text="Address"
             android:textColor="#000"
             android:textSize="25sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_view_property_status"
+            android:id="@+id/text_view_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Property Status"
+            android:text="City"
             android:textColor="#000"
             android:textSize="20sp"
             android:textStyle="italic" />
 
         <TextView
-            android:id="@+id/text_view_mortgage_info"
+            android:id="@+id/text_view_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Mortgage Info"
+            android:text="State"
             android:textColor="#000"
             android:textSize="15dp" />
 

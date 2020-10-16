@@ -8,6 +8,7 @@ import com.example.mockpropertymanagmentapp.data.models.Task
 import com.example.mockpropertymanagmentapp.helpers.toastShort
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_add_task.*
+import kotlinx.android.synthetic.main.app_bar.*
 
 class AddTaskActivity : AppCompatActivity() {
     private lateinit var firebaseDatabase: FirebaseDatabase
@@ -19,6 +20,7 @@ class AddTaskActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        toolbar()
         button_add_task_submit.setOnClickListener {
             var priority = edit_text_priority.text.toString()
             var summary =edit_text_summary.text.toString()
@@ -35,5 +37,11 @@ class AddTaskActivity : AppCompatActivity() {
                 finish()
             } else this.toastShort("You have to write a summary and due date")
         }
+    }
+
+    private fun toolbar() {
+        var toolbar = toolbar
+        toolbar.title = "Add New Task"
+        setSupportActionBar(toolbar)
     }
 }

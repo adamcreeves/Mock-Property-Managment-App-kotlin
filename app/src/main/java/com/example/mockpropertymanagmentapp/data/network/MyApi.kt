@@ -2,6 +2,7 @@ package com.example.mockpropertymanagmentapp.data.network
 
 import com.example.mockpropertymanagmentapp.app.Config
 import com.example.mockpropertymanagmentapp.data.models.*
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
@@ -43,6 +44,7 @@ fun getUserProperties() : Call<PropertiesResponse>
         operator fun invoke() : MyApi {
             return Retrofit.Builder()
                 .baseUrl(Config.BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(ApiMiddleman.client)
                 .build()

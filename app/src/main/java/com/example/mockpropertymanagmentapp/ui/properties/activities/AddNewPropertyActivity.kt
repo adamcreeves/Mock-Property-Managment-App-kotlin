@@ -11,21 +11,14 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.data.models.*
 import com.example.mockpropertymanagmentapp.data.network.MyApi
-import com.example.mockpropertymanagmentapp.data.repositories.UserRepository
-import com.example.mockpropertymanagmentapp.databinding.ActivityLoginBinding
 import com.example.mockpropertymanagmentapp.helpers.SessionManager
 import com.example.mockpropertymanagmentapp.helpers.toastShort
-import com.example.mockpropertymanagmentapp.ui.home.HomeActivity
 import com.example.mockpropertymanagmentapp.ui.properties.PropertiesListener
-import com.example.mockpropertymanagmentapp.ui.properties.PropertiesViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -36,6 +29,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_add_new_property.*
+import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.property_bottom_sheet.view.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -56,6 +50,7 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
     }
 
     private fun init() {
+        toolbar()
         val bottomSheetDialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.property_bottom_sheet, null)
         bottomSheetDialog.setContentView(view)
@@ -200,7 +195,7 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
         this.toastShort("Adding new property")
     }
 
-    override fun onSuccessful(response: LiveData<String>) {
+    override fun onSuccessful(response: LiveData<ArrayList<Property>>) {
         response.observe(this, Observer {
             this.toastShort("Added new property successfully")
             Log.d("abc", response.value.toString())
@@ -228,6 +223,12 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
         cursor!!.moveToFirst()
         val idx: Int = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
         return cursor.getString(idx)
+    }
+
+    private fun toolbar() {
+        var toolbar = toolbar
+        toolbar.title = "Add New Property"
+        setSupportActionBar(toolbar)
     }
 
 }

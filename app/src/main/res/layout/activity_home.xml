@@ -1,161 +1,234 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
+    <include layout="@layout/app_bar" />
+
     <Button
         android:id="@+id/button_home_logout"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp"
-        android:layoutDirection="rtl"
-        android:background="@drawable/ic_baseline_logout" />
-    <TextView
-        android:id="@+id/homepage_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="15dp"
-        android:text="@string/home_page"
-        android:textColor="@color/colorAccent4"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="9dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_baseline_logout"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/homepage_title"
         android:orientation="vertical"
-        android:weightSum="3"
-        android:layout_below="@+id/homepage_title">
+        android:weightSum="3">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3"
             android:layout_weight="1"
+            android:orientation="horizontal"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp">
+            android:paddingRight="30dp"
+            android:weightSum="3">
 
 
-            <Button
-                android:id="@+id/button_home_alerts"
-                android:background="@drawable/ic_baseline_alerts"
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:text="Alerts"
-                android:textColor="@color/colorTextWhite"
-                android:textStyle="bold"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/colorAccent4"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="15dp"
+                tools:ignore="NestedWeights">
 
-            <Button
-                android:id="@+id/button_home_collect_rent"
-                android:background="@drawable/ic_baseline_collect_rent"
+                <Button
+                    android:id="@+id/button_home_alerts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_baseline_alerts"
+                    android:text="Alerts"
+                    android:textColor="@color/colorTextWhite"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/colorTextWhite"
-                android:text="Collect Rent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/colorAccent4"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="15dp">
 
-            <Button
-                android:id="@+id/button_home_documents"
-                android:background="@drawable/ic_baseline_documents"
+                <Button
+                    android:id="@+id/button_home_collect_rent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_baseline_collect_rent"
+                    android:text="Collect Rent"
+                    android:textColor="@color/colorTextWhite"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:text="Documents"
-                android:textColor="@color/colorTextWhite"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/colorAccent4"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="15dp">
 
+                <Button
+                    android:id="@+id/button_home_documents"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_baseline_documents"
+                    android:text="Documents"
+                    android:textColor="@color/colorTextWhite"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3"
             android:layout_weight="1"
+            android:orientation="horizontal"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp">
+            android:paddingRight="30dp"
+            android:weightSum="3">
 
-
-            <Button
-                android:id="@+id/button_home_properties"
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:text="Properties"
-                android:textColor="@color/colorTextWhite"
-                android:background="@drawable/ic_baseline_properties"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/colorAccent4"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="15dp">
 
-            <Button
-                android:id="@+id/button_home_tenants"
+                <Button
+                    android:id="@+id/button_home_properties"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_baseline_properties"
+                    android:text="Properties"
+                    android:textColor="@color/colorTextWhite"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:text="Tenants"
-                android:textColor="@color/colorTextWhite"
-                android:background="@drawable/ic_baseline_tenants"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/colorAccent4"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="15dp">
 
-            <Button
-                android:id="@+id/button_home_todo_list"
+                <Button
+                    android:id="@+id/button_home_tenants"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_baseline_tenants"
+                    android:text="Tenants"
+                    android:textColor="@color/colorTextWhite"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:text="To-Do List"
-                android:focusable="true"
-                android:textColor="@color/colorTextWhite"
-                android:background="@drawable/ic_baseline_to_do_list"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/colorAccent4"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="15dp">
 
+                <Button
+                    android:id="@+id/button_home_todo_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_baseline_to_do_list"
+                    android:focusable="true"
+                    android:text="To-Do List"
+                    android:textColor="@color/colorTextWhite"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3"
             android:layout_weight="1"
+            android:orientation="horizontal"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp">
+            android:paddingRight="30dp"
+            android:weightSum="3">
 
-
-            <Button
-                android:id="@+id/button_home_transactions"
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:text="Transactions"
-                android:textColor="@color/colorTextWhite"
-                android:background="@drawable/ic_baseline_transactions"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/colorAccent4"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="15dp">
 
-            <Button
-                android:id="@+id/button_home_trips"
+                <Button
+                    android:id="@+id/button_home_transactions"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_baseline_transactions"
+                    android:text="Transactions"
+                    android:textColor="@color/colorTextWhite"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:text="Trips"
-                android:textColor="@color/colorTextWhite"
-                android:background="@drawable/ic_baseline_trips"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/colorAccent4"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="15dp">
 
-            <Button
-                android:id="@+id/button_home_vendors"
+                <Button
+                    android:id="@+id/button_home_trips"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_baseline_trips"
+                    android:text="Trips"
+                    android:textColor="@color/colorTextWhite"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/colorTextWhite"
-                android:text="Vendors"
-                android:background="@drawable/ic_baseline_vendors"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/colorAccent4"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="15dp">
 
+                <Button
+                    android:id="@+id/button_home_vendors"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_baseline_vendors"
+                    android:text="Vendors"
+                    android:textColor="@color/colorTextWhite"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
     </LinearLayout>

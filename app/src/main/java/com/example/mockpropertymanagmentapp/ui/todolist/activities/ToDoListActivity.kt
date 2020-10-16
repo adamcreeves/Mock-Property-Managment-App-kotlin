@@ -11,6 +11,7 @@ import com.example.mockpropertymanagmentapp.helpers.toastShort
 import com.example.mockpropertymanagmentapp.ui.todolist.adapters.AdapterTodoList
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_to_do_list.*
+import kotlinx.android.synthetic.main.app_bar.*
 
 class ToDoListActivity : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
@@ -25,6 +26,7 @@ class ToDoListActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        toolbar()
         getData()
         adapterTodoList = AdapterTodoList(this, mList, keyList)
         recycler_view_todo_list.layoutManager = LinearLayoutManager(this)
@@ -52,4 +54,11 @@ class ToDoListActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun toolbar() {
+        var toolbar = toolbar
+        toolbar.title = "To Do List"
+        setSupportActionBar(toolbar)
+    }
+
 }

@@ -11,6 +11,7 @@ import com.example.mockpropertymanagmentapp.ui.otheractivities.*
 import com.example.mockpropertymanagmentapp.ui.properties.activities.PropertyActivity
 import com.example.mockpropertymanagmentapp.ui.todolist.activities.ToDoListActivity
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.app_bar.*
 
 class HomeActivity : AppCompatActivity() {
     lateinit var sessionManager: SessionManager
@@ -22,6 +23,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        toolbar()
         button_home_logout.setOnClickListener{
             dialogLogout()
         }
@@ -66,6 +68,12 @@ class HomeActivity : AppCompatActivity() {
         }
         val myAlertDialog = builder.create()
         myAlertDialog.show()
+    }
+
+    private fun toolbar() {
+        var toolbar = toolbar
+        toolbar.title = "Home Page"
+        setSupportActionBar(toolbar)
     }
 
 }

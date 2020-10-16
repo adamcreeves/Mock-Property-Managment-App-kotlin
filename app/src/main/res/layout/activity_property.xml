@@ -12,48 +12,31 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent3"
-        android:padding="10dp">
+        android:background="@color/colorAccent3">
+
+        <include layout="@layout/app_bar" />
+
+        <Button
+            android:id="@+id/button_property_to_add_property"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="9dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_baseline_add_property" />
 
         <LinearLayout
             android:id="@+id/address_section"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Properties"
-                android:textColor="@color/colorTextWhite"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <Button
-                    android:onClick="@{viewModel::On"
-                    android:id="@+id/button_property_show_properties"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="View Properties"
-                    android:layout_weight="1"/>
-
-                <Button
-                    android:id="@+id/button_property_to_add_property"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add New Property"
-                    android:layout_weight="1"/>
-            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_properties"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_margin="10dp" />
 
         </LinearLayout>
 
