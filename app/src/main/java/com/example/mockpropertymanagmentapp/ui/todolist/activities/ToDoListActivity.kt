@@ -47,7 +47,7 @@ class ToDoListActivity : AppCompatActivity() {
                     keyList.add(key!!)
                 }
                 adapterTodoList?.setData(mList)
-                progress_bar.visibility = View.GONE
+                progress_bar_todo.visibility = View.GONE
             }
             override fun onCancelled(error: DatabaseError) {
                 applicationContext.toastShort("An error has occurred")

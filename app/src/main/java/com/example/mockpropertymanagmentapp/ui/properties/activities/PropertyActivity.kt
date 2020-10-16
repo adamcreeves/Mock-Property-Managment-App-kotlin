@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
@@ -33,6 +34,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_property.*
+import kotlinx.android.synthetic.main.activity_to_do_list.*
 import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.property_bottom_sheet.view.*
 import retrofit2.Call
@@ -55,7 +57,6 @@ class PropertyActivity : AppCompatActivity() {
         adapterProperties = AdapterProperties(this, myList)
         recycler_view_properties.layoutManager = LinearLayoutManager(this)
         recycler_view_properties.adapter = adapterProperties
-
         button_property_to_add_property.setOnClickListener {
             startActivity(Intent(this, AddNewPropertyActivity::class.java))
         }
@@ -71,6 +72,7 @@ class PropertyActivity : AppCompatActivity() {
                     response: Response<PropertiesResponse>
                 ) {
                     adapterProperties?.setData(response.body()!!.data as ArrayList<Property>)
+                    progress_bar_property.visibility = View.GONE
                 }
 
                 override fun onFailure(call: Call<PropertiesResponse>, t: Throwable) {
@@ -78,6 +80,7 @@ class PropertyActivity : AppCompatActivity() {
                 }
 
             })
+
     }
 
     private fun toolbar() {
