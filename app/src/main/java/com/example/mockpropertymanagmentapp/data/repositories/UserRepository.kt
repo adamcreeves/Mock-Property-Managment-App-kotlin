@@ -8,13 +8,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.mockpropertymanagmentapp.data.models.*
 import com.example.mockpropertymanagmentapp.data.network.MyApi
 import com.example.mockpropertymanagmentapp.helpers.SessionManager
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
 
 class UserRepository {
     lateinit var sessionManager: SessionManager
@@ -93,23 +89,5 @@ class UserRepository {
                 }
             })
         return registerResponse
-    }
-
-    fun getUserProperties() : LiveData<ArrayList<Property>> {
-        var propertyResponse = MutableLiveData<ArrayList<Property>>()
-        MyApi().getUserProperties()
-            .enqueue(object: Callback<PropertiesResponse>{
-                override fun onResponse(
-                    call: Call<PropertiesResponse>,
-                    response: Response<PropertiesResponse>
-                ) {
-                    if(response.isSuccessful)
-                        propertyResponse.value = response.body()!!.data as ArrayList<Property>
-                }
-                override fun onFailure(call: Call<PropertiesResponse>, t: Throwable) {
-                    Log.d("abc", t.message.toString())
-                }
-            })
-        return propertyResponse
     }
 }

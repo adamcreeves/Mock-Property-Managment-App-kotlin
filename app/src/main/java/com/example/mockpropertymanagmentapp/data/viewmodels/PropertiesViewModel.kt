@@ -13,13 +13,13 @@ class PropertiesViewModel : ViewModel() {
     var country: String? = null
     var purchasePrice: String? = null
     var propertyListListener: PropertyListListener? = null
-    fun onGetPropertiesClicked(view: View) {
-        Log.d("abc", "Properties are being retrieved")
-        var propertiesResponse = UserRepository().getUserProperties()
-        propertyListListener?.onSuccessful(propertiesResponse)
-        if(propertiesResponse == null) {
-            propertyListListener?.onFailed("Properties were not retrieved")
-        }
-    }
+//    fun onGetPropertiesClicked(view: View) {
+//        Log.d("abc", "Properties are being retrieved")
+//        var propertiesResponse = UserRepository().getUserProperties()
+//        propertyListListener?.onSuccessful(propertiesResponse)
+//        if(propertiesResponse == null) {
+//            propertyListListener?.onFailed("Properties were not retrieved")
+//        }
+//    }
 
 }

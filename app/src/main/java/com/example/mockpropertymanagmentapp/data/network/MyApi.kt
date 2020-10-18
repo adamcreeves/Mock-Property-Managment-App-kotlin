@@ -3,9 +3,7 @@ package com.example.mockpropertymanagmentapp.data.network
 import com.example.mockpropertymanagmentapp.app.Config
 import com.example.mockpropertymanagmentapp.data.models.*
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import io.reactivex.Single
 import okhttp3.MultipartBody
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -37,8 +35,8 @@ interface MyApi {
         @Part image: MultipartBody.Part
     ) : Call<UploadPictureResponse>
 
-@GET("property/user/${Config.PROPERTIES_USERID}" )
-fun getUserProperties() : Call<PropertiesResponse>
+@GET("property/user/{userId}" )
+fun getUserProperties(@Path("userId") userId: String) : Call<PropertiesResponse>
 
     companion object {
         operator fun invoke() : MyApi {
