@@ -44,7 +44,6 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_margin="5dp"
                     android:hint="@string/email"
                     android:padding="2dp">
 
@@ -64,7 +63,6 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_margin="5dp"
                     android:hint="@string/password"
                     android:padding="2dp">
 
@@ -93,10 +91,20 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+
+        <ProgressBar
+            android:id="@+id/progress_bar_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="60dp"
             android:orientation="horizontal"
             android:weightSum="2">
 

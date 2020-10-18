@@ -5,8 +5,8 @@ data class Task(
     var summary: String? = null,
     var dueDate: String? = null,
     var estimatedCost: String? = null,
-    var actualCost: String? = null,
-    var status: String? = null
+    var estimatedDuration: String? = null,
+    var status: String = "incomplete"
 ) {
     companion object {
         const val COLLECTION_NAME = "tasks"

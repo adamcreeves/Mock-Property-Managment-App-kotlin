@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
@@ -40,13 +41,11 @@ class LoginActivity : AppCompatActivity(), AuthListener {
     }
 
     override fun onStarted() {
-        this.toastShort("Login started")
+        progress_bar_login.visibility = VISIBLE
     }
 
     override fun onSuccess(response: LiveData<String>) {
         response.observe(this, Observer {
-            this.toastShort("Login successful")
-            Log.d("abc", response.value.toString())
             startActivity(Intent(applicationContext, HomeActivity::class.java))
         })
 

@@ -26,10 +26,9 @@ class AddTaskActivity : AppCompatActivity() {
             var summary =edit_text_summary.text.toString()
             var dueDate = edit_text_due_date.text.toString()
             var estimatedCost = edit_text_estimated_cost.text.toString()
-            var actualCost = edit_text_actual_cost.text.toString()
-            var status = edit_text_status.text.toString()
+            var estimatedDuration = edit_text_estimated_duration.text.toString()
             if(summary != "" && dueDate != "") {
-                var task = Task(priority, summary, dueDate, estimatedCost, actualCost, status)
+                var task = Task(priority, summary, dueDate, estimatedCost, estimatedDuration)
                 var databaseReference = firebaseDatabase.getReference("tasks")
                 var taskId = databaseReference.push().key
                 databaseReference.child(taskId!!).setValue(task)

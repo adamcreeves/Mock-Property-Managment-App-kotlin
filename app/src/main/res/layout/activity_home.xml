@@ -15,12 +15,18 @@
         android:layout_alignParentRight="true"
         android:layout_margin="9dp"
         android:background="@drawable/ic_baseline_logout" />
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_margin="30dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:layout_below="@+id/homepage_title"
-        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
         android:orientation="vertical"
         android:weightSum="3">
 
@@ -30,8 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
             android:weightSum="3">
 
 
@@ -43,8 +47,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 app:cardBackgroundColor="@color/colorAccent4"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="15dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="75dp"
@@ -76,8 +80,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 app:cardBackgroundColor="@color/colorAccent4"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="15dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="75dp"
@@ -108,8 +112,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 app:cardBackgroundColor="@color/colorAccent4"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="15dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="75dp"
@@ -136,8 +140,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
             android:weightSum="3">
 
             <androidx.cardview.widget.CardView
@@ -148,8 +150,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 app:cardBackgroundColor="@color/colorAccent4"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="15dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="75dp"
@@ -178,8 +180,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 app:cardBackgroundColor="@color/colorAccent4"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="15dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="75dp"
@@ -208,8 +210,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 app:cardBackgroundColor="@color/colorAccent4"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="15dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="75dp"
@@ -236,8 +238,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
             android:weightSum="3">
 
             <androidx.cardview.widget.CardView
@@ -248,8 +248,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 app:cardBackgroundColor="@color/colorAccent4"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="15dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="75dp"
@@ -278,8 +278,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 app:cardBackgroundColor="@color/colorAccent4"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="15dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="75dp"
@@ -308,8 +308,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 app:cardBackgroundColor="@color/colorAccent4"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="15dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
                 <ImageView
                     android:layout_width="75dp"
@@ -332,4 +332,5 @@
         </LinearLayout>
 
     </LinearLayout>
+</androidx.cardview.widget.CardView>
 </RelativeLayout>

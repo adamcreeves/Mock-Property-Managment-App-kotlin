@@ -42,7 +42,7 @@ class AdapterTodoList(
             itemView.text_view_summary.text = task.summary
             itemView.text_view_due_date.text = task.dueDate
             itemView.text_view_estimated_cost.text = task.estimatedCost
-            itemView.text_view_actual_cost.text = task.actualCost
+            itemView.text_view_estimated_duration.text = task.estimatedDuration
             itemView.text_view_status.text = task.status
         }
     }
