@@ -12,10 +12,12 @@ class SessionManager(private var myContext: Context) {
     var sharedPreferences = myContext.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
     var editor = sharedPreferences.edit()
 
-    fun saveUserLogin(token: String) {
+    fun saveUserLogin(token: String, userId: String) {
         editor.putString(KEY_TOKEN, token)
+        editor.putString(KEY_USERID, userId)
         editor.commit()
     }
+
 
     fun getQuickLogin(): Boolean {
         var token = sharedPreferences.getString(KEY_TOKEN, null)

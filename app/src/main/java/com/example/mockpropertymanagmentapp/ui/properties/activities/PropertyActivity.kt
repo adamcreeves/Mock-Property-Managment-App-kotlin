@@ -18,7 +18,7 @@ import com.example.mockpropertymanagmentapp.data.models.PropertiesResponse
 import com.example.mockpropertymanagmentapp.data.models.Property
 import com.example.mockpropertymanagmentapp.data.models.Task
 import com.example.mockpropertymanagmentapp.data.network.MyApi
-import com.example.mockpropertymanagmentapp.databinding.ActivityPropertyBinding
+import com.example.mockpropertymanagmentapp.data.repositories.PropertyRepository
 import com.example.mockpropertymanagmentapp.helpers.toastShort
 import com.example.mockpropertymanagmentapp.ui.properties.PropertiesListener
 import com.example.mockpropertymanagmentapp.ui.properties.PropertiesViewModel
@@ -44,7 +44,6 @@ import retrofit2.Response
 class PropertyActivity : AppCompatActivity() {
     private var adapterProperties: AdapterProperties? = null
     var myList: ArrayList<Property> = ArrayList()
-    lateinit var binding: ActivityPropertyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_property)
@@ -53,33 +52,15 @@ class PropertyActivity : AppCompatActivity() {
 
     private fun init() {
         toolbar()
-        getData()
         adapterProperties = AdapterProperties(this, myList)
+        PropertyRepository().getData(this, adapterProperties!!)
+        progress_bar_property.visibility = View.GONE
         recycler_view_properties.layoutManager = LinearLayoutManager(this)
         recycler_view_properties.adapter = adapterProperties
         button_property_to_add_property.setOnClickListener {
             startActivity(Intent(this, AddNewPropertyActivity::class.java))
         }
 
-
-    }
-
-    private fun getData() {
-        MyApi().getUserProperties()
-            .enqueue(object: Callback<PropertiesResponse> {
-                override fun onResponse(
-                    call: Call<PropertiesResponse>,
-                    response: Response<PropertiesResponse>
-                ) {
-                    adapterProperties?.setData(response.body()!!.data as ArrayList<Property>)
-                    progress_bar_property.visibility = View.GONE
-                }
-
-                override fun onFailure(call: Call<PropertiesResponse>, t: Throwable) {
-                    applicationContext.toastShort("Something went wrong")
-                }
-
-            })
 
     }
 

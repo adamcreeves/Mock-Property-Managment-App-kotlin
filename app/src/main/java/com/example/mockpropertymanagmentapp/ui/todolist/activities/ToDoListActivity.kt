@@ -7,6 +7,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.data.models.Task
+import com.example.mockpropertymanagmentapp.data.repositories.ToDoRepository
 import com.example.mockpropertymanagmentapp.helpers.toastShort
 import com.example.mockpropertymanagmentapp.ui.todolist.adapters.AdapterTodoList
 import com.google.firebase.database.*
@@ -27,32 +28,14 @@ class ToDoListActivity : AppCompatActivity() {
 
     private fun init() {
         toolbar()
-        getData()
         adapterTodoList = AdapterTodoList(this, mList, keyList)
+        ToDoRepository().getData(this, adapterTodoList!!, mList, keyList)
+        progress_bar_todo.visibility = View.GONE
         recycler_view_todo_list.layoutManager = LinearLayoutManager(this)
         recycler_view_todo_list.adapter = adapterTodoList
         button_todo_list_to_add_task.setOnClickListener{
             startActivity(Intent(this, AddTaskActivity::class.java))
         }
-    }
-
-    private fun getData() {
-        databaseReference.addValueEventListener(object: ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                mList = ArrayList()
-                for(data in snapshot.children) {
-                    var task = data.getValue(Task::class.java)
-                    var key = data.key
-                    mList.add(task!!)
-                    keyList.add(key!!)
-                }
-                adapterTodoList?.setData(mList)
-                progress_bar_todo.visibility = View.GONE
-            }
-            override fun onCancelled(error: DatabaseError) {
-                applicationContext.toastShort("An error has occurred")
-            }
-        })
     }
 
     private fun toolbar() {

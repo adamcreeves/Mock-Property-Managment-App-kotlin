@@ -19,7 +19,7 @@ class AuthViewModel : ViewModel() {
         if(email.isNullOrEmpty() || password.isNullOrEmpty()) {
             authListener?.onFailure("Login unsuccessful")
         }
-        val loginResponse = UserRepository().login(email!!, password!!)
+        val loginResponse = UserRepository().login(view.context, email!!, password!!)
         authListener?.onSuccess(loginResponse)
     }
     fun onRegisterTenantClicked(view: View) {

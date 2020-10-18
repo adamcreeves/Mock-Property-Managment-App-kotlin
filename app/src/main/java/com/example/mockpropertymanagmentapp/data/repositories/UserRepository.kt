@@ -1,6 +1,7 @@
 package com.example.mockpropertymanagmentapp.data.repositories
 
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,8 +17,9 @@ import retrofit2.Response
 import java.io.File
 
 class UserRepository {
+    lateinit var sessionManager: SessionManager
     var userId: String? = null
-    fun login(email: String, password: String): LiveData<String> {
+    fun login(myContext: Context, email: String, password: String): LiveData<String> {
         var loginResponse = MutableLiveData<String>()
         var loginUser = LoginUser(email, password)
         MyApi().login(loginUser)
@@ -27,9 +29,9 @@ class UserRepository {
                     response: Response<LoginResponse>
                 ) {
                     if (response.isSuccessful) {
+                        sessionManager = SessionManager(myContext)
                         loginResponse.value = response.body()!!.token
-                        userId = response.body()!!.user._id
-                        Log.d("bbb", userId!!)
+                        sessionManager.saveUserLogin(response.body()!!.token, response.body()!!.user._id)
                     }
                 }
 
