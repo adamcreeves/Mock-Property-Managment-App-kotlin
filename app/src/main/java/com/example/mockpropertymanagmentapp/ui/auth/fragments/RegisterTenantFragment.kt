@@ -7,10 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.ui.auth.activities.LoginActivity
 import com.example.mockpropertymanagmentapp.data.network.MyApi
@@ -18,9 +14,6 @@ import com.example.mockpropertymanagmentapp.data.models.RegisterResponse
 import com.example.mockpropertymanagmentapp.data.models.Tenant
 import com.example.mockpropertymanagmentapp.databinding.FragmentRegisterLandlordBinding
 import com.example.mockpropertymanagmentapp.databinding.FragmentRegisterTenantBinding
-import com.example.mockpropertymanagmentapp.helpers.toastShort
-import com.example.mockpropertymanagmentapp.ui.auth.AuthListener
-import com.example.mockpropertymanagmentapp.ui.auth.AuthViewModel
 import kotlinx.android.synthetic.main.fragment_register_tenant.view.*
 import retrofit2.Call
 import retrofit2.Callback

@@ -10,19 +10,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.mockpropertymanagmentapp.R
-import com.example.mockpropertymanagmentapp.data.network.MyApi
 import com.example.mockpropertymanagmentapp.helpers.SessionManager
-import com.example.mockpropertymanagmentapp.data.models.LoginResponse
-import com.example.mockpropertymanagmentapp.data.models.LoginUser
 import com.example.mockpropertymanagmentapp.databinding.ActivityLoginBinding
 import com.example.mockpropertymanagmentapp.helpers.toastShort
-import com.example.mockpropertymanagmentapp.ui.auth.AuthListener
-import com.example.mockpropertymanagmentapp.ui.auth.AuthViewModel
+import com.example.mockpropertymanagmentapp.data.listeners.AuthListener
+import com.example.mockpropertymanagmentapp.data.viewmodels.AuthViewModel
 import com.example.mockpropertymanagmentapp.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_login.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginActivity : AppCompatActivity(), AuthListener {
     lateinit var sessionManager: SessionManager

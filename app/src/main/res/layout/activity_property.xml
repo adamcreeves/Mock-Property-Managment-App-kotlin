@@ -4,7 +4,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.mockpropertymanagmentapp.ui.properties.PropertiesViewModel" />
+            type="com.example.mockpropertymanagmentapp.data.viewmodels.PropertiesViewModel" />
 
     </data>
 

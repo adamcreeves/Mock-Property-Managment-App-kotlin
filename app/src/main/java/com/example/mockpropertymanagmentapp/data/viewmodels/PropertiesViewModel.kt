@@ -1,9 +1,10 @@
-package com.example.mockpropertymanagmentapp.ui.properties
+package com.example.mockpropertymanagmentapp.data.viewmodels
 
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
 import com.example.mockpropertymanagmentapp.data.repositories.UserRepository
+import com.example.mockpropertymanagmentapp.data.listeners.PropertyListListener
 
 class PropertiesViewModel : ViewModel() {
     var address: String? = null

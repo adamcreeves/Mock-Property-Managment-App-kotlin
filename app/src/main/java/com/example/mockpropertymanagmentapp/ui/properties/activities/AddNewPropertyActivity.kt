@@ -18,7 +18,7 @@ import com.example.mockpropertymanagmentapp.data.models.*
 import com.example.mockpropertymanagmentapp.data.network.MyApi
 import com.example.mockpropertymanagmentapp.helpers.SessionManager
 import com.example.mockpropertymanagmentapp.helpers.toastShort
-import com.example.mockpropertymanagmentapp.ui.properties.PropertiesListener
+import com.example.mockpropertymanagmentapp.data.listeners.PropertiesListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport

@@ -1,4 +1,4 @@
-package com.example.mockpropertymanagmentapp.ui.auth
+package com.example.mockpropertymanagmentapp.data.listeners
 
 import androidx.lifecycle.LiveData
 

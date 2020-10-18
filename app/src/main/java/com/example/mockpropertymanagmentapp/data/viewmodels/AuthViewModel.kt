@@ -1,8 +1,9 @@
-package com.example.mockpropertymanagmentapp.ui.auth
+package com.example.mockpropertymanagmentapp.data.viewmodels
 
 import android.view.View
 import androidx.lifecycle.ViewModel
 import com.example.mockpropertymanagmentapp.data.repositories.UserRepository
+import com.example.mockpropertymanagmentapp.data.listeners.AuthListener
 
 class AuthViewModel : ViewModel() {
     var email: String? = null
