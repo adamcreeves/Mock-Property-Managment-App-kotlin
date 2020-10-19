@@ -16,26 +16,30 @@ class AuthViewModel : ViewModel() {
 
     fun onLoginButtonClicked(view: View) {
         authListener?.onStarted()
-        if(email.isNullOrEmpty() || password.isNullOrEmpty()) {
+        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
             authListener?.onFailure("Incorrect Email or Password")
         }
         val loginResponse = UserRepository().login(view.context, email!!, password!!)
         authListener?.onSuccess(loginResponse)
     }
+
     fun onRegisterTenantClicked(view: View) {
         authListener?.onStarted()
-        if(password.isNullOrEmpty() || password != confirmPassword) {
+        if (password.isNullOrEmpty() || password != confirmPassword) {
             authListener?.onFailure("Registration unsuccessful")
         }
-        val registerResponse = UserRepository().registerTenant(email!!, landlordEmail!!, name!!, password!!, type!!)
+        val registerResponse =
+            UserRepository().registerTenant(email!!, landlordEmail!!, name!!, password!!, type!!)
         authListener?.onSuccess(registerResponse)
     }
+
     fun onRegisterLandlordClicked(view: View) {
         authListener?.onStarted()
-        if(password.isNullOrEmpty() || password != confirmPassword) {
+        if (password.isNullOrEmpty() || password != confirmPassword) {
             authListener?.onFailure("Registration unsuccessful")
         }
-        val registerResponse = UserRepository().registerLandlord(email!!, name!!, password!!, type!!)
+        val registerResponse =
+            UserRepository().registerLandlord(email!!, name!!, password!!, type!!)
         authListener?.onSuccess(registerResponse)
     }
 }

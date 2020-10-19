@@ -24,34 +24,34 @@ class HomeActivity : AppCompatActivity() {
 
     private fun init() {
         toolbar()
-        button_home_logout.setOnClickListener{
+        button_home_logout.setOnClickListener {
             dialogLogout()
         }
-        button_home_properties.setOnClickListener{
+        button_home_properties.setOnClickListener {
             startActivity(Intent(this, PropertyActivity::class.java))
         }
-        button_home_todo_list.setOnClickListener{
+        button_home_todo_list.setOnClickListener {
             startActivity(Intent(this, ToDoListActivity::class.java))
         }
-        button_home_collect_rent.setOnClickListener{
+        button_home_collect_rent.setOnClickListener {
             startActivity(Intent(this, CollectRentActivity::class.java))
         }
-        button_home_documents.setOnClickListener{
+        button_home_documents.setOnClickListener {
             startActivity(Intent(this, DocumentActivity::class.java))
         }
-        button_home_tenants.setOnClickListener{
+        button_home_tenants.setOnClickListener {
             startActivity(Intent(this, TenantsActivity::class.java))
         }
-        button_home_transactions.setOnClickListener{
+        button_home_transactions.setOnClickListener {
             startActivity(Intent(this, TransactionsActivity::class.java))
         }
-        button_home_trips.setOnClickListener{
+        button_home_trips.setOnClickListener {
             startActivity(Intent(this, TripActivity::class.java))
         }
-        button_home_alerts.setOnClickListener{
+        button_home_alerts.setOnClickListener {
             startActivity(Intent(this, AlertsActivity::class.java))
         }
-        button_home_vendors.setOnClickListener{
+        button_home_vendors.setOnClickListener {
             startActivity(Intent(this, VendorsActivity::class.java))
         }
     }
@@ -60,7 +60,8 @@ class HomeActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Confirm Log Out")
         builder.setMessage("Are you sure you want to log out?")
-        builder.setNegativeButton("No"
+        builder.setNegativeButton(
+            "No"
         ) { dialog, p1 -> dialog?.dismiss() }
         builder.setPositiveButton("Yes") { p0, p1 ->
             sessionManager.logout()
@@ -72,7 +73,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun toolbar() {
         var toolbar = toolbar
-        toolbar.title = "Home Page"
+        toolbar.title = "Home"
         setSupportActionBar(toolbar)
     }
 

@@ -26,13 +26,14 @@ class PropertyActivity : AppCompatActivity() {
         toolbar()
         adapterProperties = AdapterProperties(this, myList)
         PropertyRepository().getData(this, adapterProperties!!)
-        if(myList.isNotEmpty()) {
+        if (myList.isNotEmpty()) {
             progress_bar_property.visibility = View.GONE
         }
         recycler_view_properties.layoutManager = LinearLayoutManager(this)
         recycler_view_properties.adapter = adapterProperties
         button_property_to_add_property.setOnClickListener {
             startActivity(Intent(this, AddNewPropertyActivity::class.java))
+            finish()
         }
 
 
@@ -44,6 +45,7 @@ class PropertyActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {

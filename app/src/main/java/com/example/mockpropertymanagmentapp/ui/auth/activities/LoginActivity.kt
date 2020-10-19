@@ -23,7 +23,8 @@ class LoginActivity : AppCompatActivity(), AuthListener {
     lateinit var sessionManager: SessionManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        val binding: ActivityLoginBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_login)
         val viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
         binding.viewModel = viewModel
         viewModel.authListener = this
@@ -35,8 +36,9 @@ class LoginActivity : AppCompatActivity(), AuthListener {
         button_login_to_register.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
-        button_login_reset_password.setOnClickListener{
-            Toast.makeText(this, "You can't reset your password right now", Toast.LENGTH_SHORT).show()
+        button_login_reset_password.setOnClickListener {
+            Toast.makeText(this, "You can't reset your password right now", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 

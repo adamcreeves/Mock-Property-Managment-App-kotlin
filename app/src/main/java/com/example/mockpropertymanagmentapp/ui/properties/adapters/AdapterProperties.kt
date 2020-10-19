@@ -13,7 +13,8 @@ class AdapterProperties(var myContext: Context, var myList: ArrayList<Property>)
     RecyclerView.Adapter<AdapterProperties.myViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {
-        val view = LayoutInflater.from(myContext).inflate(R.layout.row_adapter_properties, parent, false)
+        val view =
+            LayoutInflater.from(myContext).inflate(R.layout.row_adapter_properties, parent, false)
         return myViewHolder(view)
     }
 
@@ -36,6 +37,8 @@ class AdapterProperties(var myContext: Context, var myList: ArrayList<Property>)
             itemView.text_view_address.text = property.address
             itemView.text_view_city.text = property.city
             itemView.text_view_state.text = property.state
+            itemView.text_view_country.text = property.country
+            itemView.text_view_purchase_price.text = property.purchasePrice
         }
     }
 }

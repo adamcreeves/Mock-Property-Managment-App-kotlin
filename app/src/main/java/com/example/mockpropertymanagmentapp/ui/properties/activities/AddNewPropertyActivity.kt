@@ -13,14 +13,19 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.mockpropertymanagmentapp.R
+import com.example.mockpropertymanagmentapp.data.listeners.NewPropertyListener
 import com.example.mockpropertymanagmentapp.data.models.*
 import com.example.mockpropertymanagmentapp.data.network.MyApi
 import com.example.mockpropertymanagmentapp.helpers.SessionManager
 import com.example.mockpropertymanagmentapp.helpers.toastShort
 import com.example.mockpropertymanagmentapp.data.listeners.PropertiesListener
+import com.example.mockpropertymanagmentapp.data.viewmodels.PropertiesViewModel
+import com.example.mockpropertymanagmentapp.databinding.ActivityAddNewPropertyBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -42,14 +47,19 @@ import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
 
-class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
+class AddNewPropertyActivity : AppCompatActivity(), NewPropertyListener {
     lateinit var sessionManager: SessionManager
     lateinit var bottomSheetDialog: BottomSheetDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_new_property)
+//        setContentView(R.layout.activity_add_new_property)
+        val binding: ActivityAddNewPropertyBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_add_new_property)
+        val addNewPropertyViewModel =
+            ViewModelProviders.of(this).get(PropertiesViewModel::class.java)
+        binding.addNewPropertyViewModel = addNewPropertyViewModel
+        binding.addNewPropertyViewModel!!.newPropertyListener = this
         sessionManager = SessionManager(this)
-
         init()
     }
 
@@ -67,31 +77,45 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
         view.button_to_gallery.setOnClickListener {
             requestGalleryPermissions()
         }
-        button_add_new_property_save.setOnClickListener {
-            var address = edit_text_address.text.toString()
-            var city = edit_text_city.text.toString()
-            var state = edit_text_state.text.toString()
-            var country = edit_text_country.text.toString()
-            var purchasePrice = edit_text_price.text.toString()
-            var imageUrl = sessionManager.getImageUrl()
-            MyApi().addProperty(Prop(address = address, city = city, state = state, country = country, purchasePrice = purchasePrice, image = imageUrl))
-                .enqueue(object: Callback<AddPropertyResponse>{
-                    override fun onResponse(
-                        call: Call<AddPropertyResponse>,
-                        response: Response<AddPropertyResponse>
-                    ) {
-                        if(response.isSuccessful){
-                            Toast.makeText(applicationContext, "Property Added Successfully", Toast.LENGTH_SHORT).show()
-                            finish()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<AddPropertyResponse>, t: Throwable) {
-                        Toast.makeText(applicationContext, "Property Not Added", Toast.LENGTH_SHORT).show()
-                    }
-
-                })
-        }
+//        button_add_new_property_save.setOnClickListener {
+//            var address = edit_text_address.text.toString()
+//            var city = edit_text_city.text.toString()
+//            var state = edit_text_state.text.toString()
+//            var country = edit_text_country.text.toString()
+//            var purchasePrice = edit_text_price.text.toString()
+//            var imageUrl = sessionManager.getImageUrl()
+//            MyApi().addNewProperty(
+//                Prop(
+//                    address = address,
+//                    city = city,
+//                    state = state,
+//                    country = country,
+//                    purchasePrice = purchasePrice,
+//                    image = imageUrl
+//                )
+//            )
+//                .enqueue(object : Callback<AddPropertyResponse> {
+//                    override fun onResponse(
+//                        call: Call<AddPropertyResponse>,
+//                        response: Response<AddPropertyResponse>
+//                    ) {
+//                        if (response.isSuccessful) {
+//                            Toast.makeText(
+//                                applicationContext,
+//                                "Property Added Successfully",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+//                            finish()
+//                        }
+//                    }
+//
+//                    override fun onFailure(call: Call<AddPropertyResponse>, t: Throwable) {
+//                        Toast.makeText(applicationContext, "Property Not Added", Toast.LENGTH_SHORT)
+//                            .show()
+//                    }
+//
+//                })
+//        }
     }
 
 
@@ -139,14 +163,14 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 203) {
+        if (requestCode == 203) {
             var bmp = data?.extras!!.get("data") as Bitmap
             var uri = getImageUri(this, bmp)
             var imagePath = getRealPathFromURI(uri)
             postNewImage(imagePath!!)
             bottomSheetDialog.dismiss()
         }
-        if(requestCode == 202) {
+        if (requestCode == 202) {
             var imagePath = getRealPathFromURI(data?.data)
             postNewImage(imagePath!!)
             bottomSheetDialog.dismiss()
@@ -158,16 +182,17 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
         var requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file)
         var body = MultipartBody.Part.createFormData("image", file.name, requestFile)
         MyApi().postNewImage(body)
-            .enqueue(object: Callback<UploadPictureResponse> {
+            .enqueue(object : Callback<UploadPictureResponse> {
                 override fun onResponse(
                     call: Call<UploadPictureResponse>,
                     response: Response<UploadPictureResponse>
                 ) {
-                    if(response.isSuccessful){
+                    if (response.isSuccessful) {
                         Log.d("bbb", response.body()!!.data.location)
                         sessionManager.saveImageUrl(response.body()!!.data.location)
                     }
                 }
+
                 override fun onFailure(call: Call<UploadPictureResponse>, t: Throwable) {
                 }
             })
@@ -176,14 +201,16 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
     private fun requestCameraPermission() {
         Dexter.withContext(this)
             .withPermission(Manifest.permission.CAMERA)
-            .withListener(object: PermissionListener {
+            .withListener(object : PermissionListener {
                 override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                    Toast.makeText(applicationContext, "Camera Access Granted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Camera Access Granted", Toast.LENGTH_SHORT)
+                        .show()
                     openTheCamera()
                 }
 
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                    Toast.makeText(applicationContext, "Camera Access Denied", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Camera Access Denied", Toast.LENGTH_SHORT)
+                        .show()
                 }
 
                 override fun onPermissionRationaleShouldBeShown(
@@ -195,27 +222,11 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
 
             }).check()
     }
+
     private fun openTheCamera() {
         var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, 203)
     }
-
-    override fun onStarted() {
-        this.toastShort("Adding new property")
-    }
-
-    override fun onSuccessful(response: LiveData<ArrayList<Property>>) {
-        response.observe(this, Observer {
-            this.toastShort("Added new property successfully")
-            Log.d("abc", response.value.toString())
-            finish()
-        })
-    }
-
-    override fun onFailure(message: String) {
-        this.toastShort(message)
-    }
-
 
     // get URI from bitmap
     fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
@@ -244,9 +255,25 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                finish()
+                startActivity(Intent(this, PropertyActivity::class.java))
             }
         }
         return true
+    }
+
+    override fun onHasStarted() {
+        this.toastShort("New property is being submitted")
+    }
+
+    override fun onSuccessfulAdd(response: LiveData<AddPropertyResponse>) {
+        response.observe(this, Observer {
+            this.toastShort("New property has been successfully added")
+            startActivity(Intent(this, PropertyActivity::class.java))
+                finish()
+        })
+    }
+
+    override fun onFailedAdd(message: String) {
+        this.toastShort(message)
     }
 }

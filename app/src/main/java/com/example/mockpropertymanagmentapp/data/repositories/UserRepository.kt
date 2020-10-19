@@ -27,7 +27,10 @@ class UserRepository {
                     if (response.isSuccessful) {
                         sessionManager = SessionManager(myContext)
                         loginResponse.value = response.body()!!.token
-                        sessionManager.saveUserLogin(response.body()!!.token, response.body()!!.user._id)
+                        sessionManager.saveUserLogin(
+                            response.body()!!.token,
+                            response.body()!!.user._id
+                        )
                     }
                 }
 
@@ -57,6 +60,7 @@ class UserRepository {
                         registerResponse.value = "Registered Tenant successful"
                     }
                 }
+
                 override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                     registerResponse.value = t.message
                 }
@@ -78,7 +82,7 @@ class UserRepository {
                     call: Call<RegisterResponse>,
                     response: Response<RegisterResponse>
                 ) {
-                    if(response.isSuccessful){
+                    if (response.isSuccessful) {
                         registerResponse.value = "Registered Landlord successful"
 
                     }

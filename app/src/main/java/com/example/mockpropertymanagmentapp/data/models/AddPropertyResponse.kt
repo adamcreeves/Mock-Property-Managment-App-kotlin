@@ -13,8 +13,6 @@ data class Prop(
     val city: String? = null,
     val country: String? = null,
     val image: String? = null,
-    val mortageInfo: Boolean? = null,
-    val propertyStatus: Boolean? = null,
     val purchasePrice: String? = null,
     val state: String? = null
 )

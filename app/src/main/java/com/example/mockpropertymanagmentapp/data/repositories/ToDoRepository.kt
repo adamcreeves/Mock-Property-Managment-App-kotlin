@@ -17,12 +17,17 @@ import kotlinx.android.synthetic.main.activity_to_do_list.*
 class ToDoRepository {
     var databaseReference = FirebaseDatabase.getInstance().getReference(Task.COLLECTION_NAME)
     var firebaseDatabase = FirebaseDatabase.getInstance()
-    fun getData(myContext: Context, adapterTodoList: AdapterTodoList, myList: ArrayList<Task>, keyList: ArrayList<String>) {
-        databaseReference.addValueEventListener(object: ValueEventListener {
+    fun getData(
+        myContext: Context,
+        adapterTodoList: AdapterTodoList,
+        myList: ArrayList<Task>,
+        keyList: ArrayList<String>
+    ) {
+        databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 myList.clear()
                 keyList.clear()
-                for(data in snapshot.children) {
+                for (data in snapshot.children) {
                     var task = data.getValue(Task::class.java)
                     var key = data.key
                     myList.add(task!!)
@@ -30,12 +35,20 @@ class ToDoRepository {
                 }
                 adapterTodoList.setData(myList)
             }
+
             override fun onCancelled(error: DatabaseError) {
                 myContext.toastShort("An error has occurred")
             }
         })
     }
-    fun addNewTask(priority: String, summary: String, dueDate: String, estimatedCost: String, estimatedDuration: String) {
+
+    fun addNewTask(
+        priority: String,
+        summary: String,
+        dueDate: String,
+        estimatedCost: String,
+        estimatedDuration: String
+    ) {
         var newTask = Task(priority, summary, dueDate, estimatedCost, estimatedDuration)
         var databaseReference = firebaseDatabase.getReference("tasks")
         var taskId = databaseReference.push().key

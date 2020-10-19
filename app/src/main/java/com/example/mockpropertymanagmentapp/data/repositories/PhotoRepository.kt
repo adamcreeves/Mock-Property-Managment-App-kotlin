@@ -37,6 +37,7 @@ class PhotoRepository {
                         ).show()
                     }
                 }
+
                 override fun onPermissionRationaleShouldBeShown(
                     p0: MutableList<PermissionRequest>?,
                     token: PermissionToken?

@@ -13,12 +13,18 @@ class ToDoViewModel : ViewModel() {
     var estimatedDuration: String? = null
     var todoListener: ToDoListener? = null
 
-    fun onSaveNewTaskClicked(view: View){
+    fun onSaveNewTaskClicked(view: View) {
         todoListener?.onStarted()
-        if(summary.isNullOrEmpty() || estimatedCost.isNullOrEmpty()){
+        if (summary.isNullOrEmpty() || estimatedCost.isNullOrEmpty()) {
             todoListener?.onFailedAdd("You need to enter a summary and estimated cost")
         }
-        ToDoRepository().addNewTask(priority!!, summary!!, dueDate!!, estimatedCost!!, estimatedDuration!!)
+        ToDoRepository().addNewTask(
+            priority!!,
+            summary!!,
+            dueDate!!,
+            estimatedCost!!,
+            estimatedDuration!!
+        )
         todoListener?.onSuccessfulAdd("New Task Added Successfully")
     }
 }

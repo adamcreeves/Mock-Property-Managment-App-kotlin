@@ -37,7 +37,7 @@ class ToDoListActivity : AppCompatActivity() {
         recycler_view_todo_list.layoutManager = LinearLayoutManager(this)
         recycler_view_todo_list.adapter = adapterTodoList
 
-        button_todo_list_to_add_task.setOnClickListener{
+        button_todo_list_to_add_task.setOnClickListener {
             startActivity(Intent(this, AddTaskActivity::class.java))
         }
     }
@@ -48,6 +48,7 @@ class ToDoListActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {

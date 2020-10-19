@@ -7,6 +7,7 @@ data class Task(
     var dueDate: String? = null,
     var estimatedCost: String? = null,
     var estimatedDuration: String? = null,
+    var image: String? = null,
     var status: String = "Incomplete"
 ) {
     companion object {

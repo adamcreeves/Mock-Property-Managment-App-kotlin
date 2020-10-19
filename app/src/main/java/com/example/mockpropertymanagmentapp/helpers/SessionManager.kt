@@ -18,7 +18,7 @@ class SessionManager(private var myContext: Context) {
         editor.commit()
     }
 
-    fun getUserId() : String {
+    fun getUserId(): String {
         var userId = sharedPreferences.getString(KEY_USERID, null)
         return userId.toString()
     }
@@ -33,7 +33,7 @@ class SessionManager(private var myContext: Context) {
         editor.commit()
     }
 
-    fun getImageUrl() : String {
+    fun getImageUrl(): String {
         return sharedPreferences.getString(KEY_IMAGE, null).toString()
     }
 

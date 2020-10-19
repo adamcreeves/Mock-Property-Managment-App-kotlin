@@ -54,7 +54,8 @@ class AddTaskActivity : AppCompatActivity(), ToDoListener {
     lateinit var bottomSheetDialog: BottomSheetDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityAddTaskBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_task)
+        val binding: ActivityAddTaskBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_add_task)
         val viewModel = ViewModelProviders.of(this).get(ToDoViewModel::class.java)
         binding.viewModel = viewModel
         binding.viewModel!!.todoListener = this
@@ -154,14 +155,14 @@ class AddTaskActivity : AppCompatActivity(), ToDoListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 203) {
+        if (requestCode == 203) {
             var bmp = data?.extras!!.get("data") as Bitmap
             var uri = getImageUri(this, bmp)
             var imagePath = getRealPathFromURI(uri)
             postNewImage(imagePath!!)
             bottomSheetDialog.dismiss()
         }
-        if(requestCode == 202) {
+        if (requestCode == 202) {
             var imagePath = getRealPathFromURI(data?.data)
             postNewImage(imagePath!!)
             bottomSheetDialog.dismiss()
@@ -173,16 +174,17 @@ class AddTaskActivity : AppCompatActivity(), ToDoListener {
         var requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file)
         var body = MultipartBody.Part.createFormData("image", file.name, requestFile)
         MyApi().postNewImage(body)
-            .enqueue(object: Callback<UploadPictureResponse> {
+            .enqueue(object : Callback<UploadPictureResponse> {
                 override fun onResponse(
                     call: Call<UploadPictureResponse>,
                     response: Response<UploadPictureResponse>
                 ) {
-                    if(response.isSuccessful){
+                    if (response.isSuccessful) {
                         Log.d("bbb", response.body()!!.data.location)
                         sessionManager.saveImageUrl(response.body()!!.data.location)
                     }
                 }
+
                 override fun onFailure(call: Call<UploadPictureResponse>, t: Throwable) {
                 }
             })
@@ -191,14 +193,16 @@ class AddTaskActivity : AppCompatActivity(), ToDoListener {
     private fun requestCameraPermission() {
         Dexter.withContext(this)
             .withPermission(Manifest.permission.CAMERA)
-            .withListener(object: PermissionListener {
+            .withListener(object : PermissionListener {
                 override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                    Toast.makeText(applicationContext, "Camera Access Granted", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Camera Access Granted", Toast.LENGTH_SHORT)
+                        .show()
                     openTheCamera()
                 }
 
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                    Toast.makeText(applicationContext, "Camera Access Denied", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Camera Access Denied", Toast.LENGTH_SHORT)
+                        .show()
                 }
 
                 override fun onPermissionRationaleShouldBeShown(
@@ -210,6 +214,7 @@ class AddTaskActivity : AppCompatActivity(), ToDoListener {
 
             }).check()
     }
+
     private fun openTheCamera() {
         var intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, 203)

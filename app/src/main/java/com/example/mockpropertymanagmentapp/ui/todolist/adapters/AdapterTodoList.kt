@@ -22,7 +22,8 @@ class AdapterTodoList(
     RecyclerView.Adapter<AdapterTodoList.mViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): mViewHolder {
-        val view = LayoutInflater.from(mContext).inflate(R.layout.row_adapter_todo_list, parent, false)
+        val view =
+            LayoutInflater.from(mContext).inflate(R.layout.row_adapter_todo_list, parent, false)
         return mViewHolder(view)
     }
 
@@ -75,7 +76,8 @@ class AdapterTodoList(
                     databaseReference.child(keyList[position]).child("status").setValue("Completed")
                 } else {
                     itemView.image_view_completed_task.visibility = View.INVISIBLE
-                    databaseReference.child(keyList[position]).child("status").setValue("Incomplete")
+                    databaseReference.child(keyList[position]).child("status")
+                        .setValue("Incomplete")
                 }
             }
         }

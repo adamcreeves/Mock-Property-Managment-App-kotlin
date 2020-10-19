@@ -3,8 +3,11 @@ package com.example.mockpropertymanagmentapp.data.viewmodels
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
+import com.example.mockpropertymanagmentapp.data.listeners.NewPropertyListener
 import com.example.mockpropertymanagmentapp.data.repositories.UserRepository
 import com.example.mockpropertymanagmentapp.data.listeners.PropertyListListener
+import com.example.mockpropertymanagmentapp.data.repositories.PropertyRepository
+import com.example.mockpropertymanagmentapp.helpers.toastShort
 
 class PropertiesViewModel : ViewModel() {
     var address: String? = null
@@ -12,17 +15,16 @@ class PropertiesViewModel : ViewModel() {
     var state: String? = null
     var country: String? = null
     var purchasePrice: String? = null
-    var propertyListListener: PropertyListListener? = null
+    var image: String? =
+        "https://cdn.trendir.com/wp-content/uploads/old/house-design/2015/11/12/malibu-beach-house-ocean-side.jpg"
+    var newPropertyListener: NewPropertyListener? = null
 
-
-
-//    fun onGetPropertiesClicked(view: View) {
-//        Log.d("abc", "Properties are being retrieved")
-//        var propertiesResponse = UserRepository().getUserProperties()
-//        propertyListListener?.onSuccessful(propertiesResponse)
-//        if(propertiesResponse == null) {
-//            propertyListListener?.onFailed("Properties were not retrieved")
-//        }
-//    }
-
+    fun onAddPropertyClicked(view: View) {
+        newPropertyListener?.onHasStarted()
+        if (address.isNullOrEmpty() || city.isNullOrEmpty() || state.isNullOrEmpty() || country.isNullOrEmpty() || purchasePrice.isNullOrEmpty()) {
+            newPropertyListener?.onFailedAdd("You need to fill in all of the text fields")
+        }
+        val propertyResponse = PropertyRepository().addNewProperty(address!!,city!!, country!!, image!!, purchasePrice!!, state!!)
+        newPropertyListener?.onSuccessfulAdd(propertyResponse)
+    }
 }

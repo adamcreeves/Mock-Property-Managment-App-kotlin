@@ -13,15 +13,15 @@ class AdapterFragments(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     }
 
     override fun getItem(position: Int): Fragment {
-        return when(position) {
+        return when (position) {
             0 -> RegisterLandlordFragment()
             else -> RegisterTenantFragment()
 
         }
     }
 
-    override fun getPageTitle(position: Int) : CharSequence? {
-        return when(position){
+    override fun getPageTitle(position: Int): CharSequence? {
+        return when (position) {
             0 -> "Landlord"
             else -> "Tenant"
 
