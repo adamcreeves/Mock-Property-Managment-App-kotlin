@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.data.models.Property
 import com.example.mockpropertymanagmentapp.data.repositories.PropertyRepository
+import com.example.mockpropertymanagmentapp.ui.home.HomeActivity
 import com.example.mockpropertymanagmentapp.ui.properties.adapters.AdapterProperties
 import kotlinx.android.synthetic.main.activity_property.*
 import kotlinx.android.synthetic.main.app_bar.*
@@ -49,6 +50,7 @@ class PropertyActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
+                startActivity(Intent(this, HomeActivity::class.java))
                 finish()
             }
         }
