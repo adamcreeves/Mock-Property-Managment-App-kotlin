@@ -20,6 +20,8 @@ class ToDoRepository {
     fun getData(myContext: Context, adapterTodoList: AdapterTodoList, myList: ArrayList<Task>, keyList: ArrayList<String>) {
         databaseReference.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                myList.clear()
+                keyList.clear()
                 for(data in snapshot.children) {
                     var task = data.getValue(Task::class.java)
                     var key = data.key
