@@ -16,6 +16,7 @@
         android:layout_margin="9dp"
         android:background="@drawable/ic_baseline_logout" />
 <androidx.cardview.widget.CardView
+    android:id="@+id/card_view_icons_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
@@ -333,4 +334,24 @@
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card_view_icons_container"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        app:cardElevation="20dp"
+        app:cardCornerRadius="10dp">
+
+        <Button
+            android:id="@+id/button_contact_us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact Us"
+            android:padding="15dp"
+            android:textColor="@color/colorTextWhite"
+            android:background="@color/colorPrimaryDark" />
+    </androidx.cardview.widget.CardView>
+
 </RelativeLayout>
