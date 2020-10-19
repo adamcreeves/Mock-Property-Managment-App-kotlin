@@ -3,6 +3,7 @@ package com.example.mockpropertymanagmentapp.ui.todolist.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -45,6 +46,15 @@ class ToDoListActivity : AppCompatActivity() {
         var toolbar = toolbar
         toolbar.title = "To Do List"
         setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+            }
+        }
+        return true
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.mockpropertymanagmentapp.ui.properties.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mockpropertymanagmentapp.R
@@ -41,5 +42,14 @@ class PropertyActivity : AppCompatActivity() {
         var toolbar = toolbar
         toolbar.title = "Properties"
         setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+            }
+        }
+        return true
     }
 }
