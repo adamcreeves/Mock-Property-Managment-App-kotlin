@@ -12,13 +12,12 @@ class AuthViewModel : ViewModel() {
     var password: String? = null
     var confirmPassword: String? = null
     var type: String? = null
-
     var authListener: AuthListener? = null
 
     fun onLoginButtonClicked(view: View) {
         authListener?.onStarted()
         if(email.isNullOrEmpty() || password.isNullOrEmpty()) {
-            authListener?.onFailure("Login unsuccessful")
+            authListener?.onFailure("Incorrect Email or Password")
         }
         val loginResponse = UserRepository().login(view.context, email!!, password!!)
         authListener?.onSuccess(loginResponse)

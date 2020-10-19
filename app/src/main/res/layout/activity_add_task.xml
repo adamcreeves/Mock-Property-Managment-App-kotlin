@@ -1,139 +1,160 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical">
+<layout>
 
-    <include layout="@layout/app_bar" />
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.mockpropertymanagmentapp.data.viewmodels.ToDoViewModel" />
+
+    </data>
 
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="20dp">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <include layout="@layout/app_bar" />
+
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+            android:layout_margin="50dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="New Task Info"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="35dp"
-                android:textStyle="italic" />
-
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/colorTextWhite"
-                android:hint="Priority? Low/Medium/High">
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/edit_text_priority"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="New Task Info"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="35dp"
+                    android:textStyle="italic" />
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/colorTextWhite"
+                    android:hint="Priority? Low/Medium/High">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/colorTextWhite"
-                android:hint="Summary of Task">
+                    <EditText
+                        android:text="@={viewModel.priority}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/edit_text_summary"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/colorTextWhite"
+                    android:hint="Summary of Task">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/colorTextWhite"
-                android:hint="Due by date">
+                    <EditText
+                        android:text="@={viewModel.summary}"
+                        android:layout_width="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/edit_text_due_date"
-                    android:layout_margin="5dp"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/colorTextWhite"
+                    android:hint="Due by date">
+
+                    <EditText
+                        android:text="@={viewModel.dueDate}"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/colorTextWhite"
-                android:hint="Estimated Cost">
-
-                <EditText
-                    android:id="@+id/edit_text_estimated_cost"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/colorTextWhite"
+                    android:hint="Estimated Cost">
+
+                    <EditText
+                        android:text="@={viewModel.estimatedCost}"
+                        android:layout_width="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/colorTextWhite"
-                android:hint="Estimated Duration"
-                android:padding="2dp">
-
-                <EditText
-                    android:id="@+id/edit_text_estimated_duration"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/colorTextWhite"
+                    android:hint="Estimated Duration"
+                    android:padding="2dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+                    <EditText
+                        android:text="@={viewModel.estimatedDuration}"
+                        android:layout_width="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:text="Add a Photo"
+                        android:padding="8dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorTextWhite"
+                        android:background="@color/colorPrimaryDark" />
+
+                    <Button
+                        android:onClick="@{viewModel::onSaveNewTaskClicked}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_margin="5dp"
+                        android:layout_gravity="center"
+                        android:text="Save New Task"
+                        android:padding="8dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorTextWhite"
+                        android:background="@color/colorPrimaryDark" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <ProgressBar
+            android:id="@+id/progress_bar_add_task"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:indeterminate="true"
+            android:visibility="invisible"
+            android:layout_gravity="center"/>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:text="Add a Photo"
-                android:padding="8dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:textColor="@color/colorTextWhite"
-                android:background="@color/colorPrimaryDark" />
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/button_add_task_submit"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"
-                android:text="Save New Task"
-                android:padding="8dp"
-                android:layout_weight="1"
-                android:textColor="@color/colorTextWhite"
-                android:background="@color/colorPrimaryDark" />
-        </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-</LinearLayout>
+</layout>

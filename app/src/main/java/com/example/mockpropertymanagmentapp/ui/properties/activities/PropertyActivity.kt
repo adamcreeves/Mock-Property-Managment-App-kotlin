@@ -25,7 +25,9 @@ class PropertyActivity : AppCompatActivity() {
         toolbar()
         adapterProperties = AdapterProperties(this, myList)
         PropertyRepository().getData(this, adapterProperties!!)
-        progress_bar_property.visibility = View.GONE
+        if(myList.isNotEmpty()) {
+            progress_bar_property.visibility = View.GONE
+        }
         recycler_view_properties.layoutManager = LinearLayoutManager(this)
         recycler_view_properties.adapter = adapterProperties
         button_property_to_add_property.setOnClickListener {

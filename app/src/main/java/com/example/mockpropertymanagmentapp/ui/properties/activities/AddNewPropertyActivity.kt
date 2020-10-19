@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -42,16 +43,18 @@ import java.io.File
 
 class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
     lateinit var sessionManager: SessionManager
+    lateinit var bottomSheetDialog: BottomSheetDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_property)
         sessionManager = SessionManager(this)
+
         init()
     }
 
     private fun init() {
         toolbar()
-        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.property_bottom_sheet, null)
         bottomSheetDialog.setContentView(view)
         button_add_new_property_add_photo.setOnClickListener {
@@ -122,7 +125,6 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
                 ) {
                     token?.continuePermissionRequest()
                 }
-
             }).onSameThread()
             .check()
     }
@@ -136,11 +138,17 @@ class AddNewPropertyActivity : AppCompatActivity(), PropertiesListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 203 || requestCode == 202) {
+        if(requestCode == 203) {
             var bmp = data?.extras!!.get("data") as Bitmap
             var uri = getImageUri(this, bmp)
             var imagePath = getRealPathFromURI(uri)
             postNewImage(imagePath!!)
+            bottomSheetDialog.dismiss()
+        }
+        if(requestCode == 202) {
+            var imagePath = getRealPathFromURI(data?.data)
+            postNewImage(imagePath!!)
+            bottomSheetDialog.dismiss()
         }
     }
 

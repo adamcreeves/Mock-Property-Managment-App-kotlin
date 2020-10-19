@@ -11,6 +11,7 @@ import com.example.mockpropertymanagmentapp.data.repositories.ToDoRepository
 import com.example.mockpropertymanagmentapp.helpers.toastShort
 import com.example.mockpropertymanagmentapp.ui.todolist.adapters.AdapterTodoList
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_property.*
 import kotlinx.android.synthetic.main.activity_to_do_list.*
 import kotlinx.android.synthetic.main.app_bar.*
 
@@ -30,9 +31,9 @@ class ToDoListActivity : AppCompatActivity() {
         toolbar()
         adapterTodoList = AdapterTodoList(this, mList, keyList)
         ToDoRepository().getData(this, adapterTodoList!!, mList, keyList)
-        progress_bar_todo.visibility = View.GONE
         recycler_view_todo_list.layoutManager = LinearLayoutManager(this)
         recycler_view_todo_list.adapter = adapterTodoList
+        progress_bar_todo.visibility = View.GONE
         button_todo_list_to_add_task.setOnClickListener{
             startActivity(Intent(this, AddTaskActivity::class.java))
         }
