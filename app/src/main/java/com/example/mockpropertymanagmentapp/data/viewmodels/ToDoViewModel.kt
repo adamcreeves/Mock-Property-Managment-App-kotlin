@@ -20,6 +20,7 @@ class ToDoViewModel : ViewModel() {
             todoListener?.onFailedAdd("You need to enter a summary and estimated cost")
         }
         ToDoRepository().addNewTask(
+            view.context,
             priority!!,
             summary!!,
             dueDate!!,

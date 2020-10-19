@@ -24,7 +24,7 @@ class PropertiesViewModel : ViewModel() {
         if (address.isNullOrEmpty() || city.isNullOrEmpty() || state.isNullOrEmpty() || country.isNullOrEmpty() || purchasePrice.isNullOrEmpty()) {
             newPropertyListener?.onFailedAdd("You need to fill in all of the text fields")
         }
-        val propertyResponse = PropertyRepository().addNewProperty(address!!,city!!, country!!, image!!, purchasePrice!!, state!!)
+        val propertyResponse = PropertyRepository().addNewProperty(view.context, address!!,city!!, country!!, image!!, purchasePrice!!, state!!)
         newPropertyListener?.onSuccessfulAdd(propertyResponse)
     }
 }

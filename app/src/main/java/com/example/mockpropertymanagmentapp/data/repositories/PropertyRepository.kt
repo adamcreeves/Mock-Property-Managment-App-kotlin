@@ -40,6 +40,7 @@ class PropertyRepository {
 
     @SuppressLint("CheckResult")
     fun addNewProperty(
+        myContext: Context,
         address: String,
         city: String,
         country: String,
@@ -48,13 +49,15 @@ class PropertyRepository {
         state: String
     ): LiveData<AddPropertyResponse> {
         val addPropertyResponse = MutableLiveData<AddPropertyResponse>()
+        sessionManager = SessionManager(myContext)
+        var imageUrl = sessionManager.getImageUrl()
         MyApi().addNewProperty(
             Prop(
                 address = address,
                 city = city,
                 country = country,
                 purchasePrice = purchasePrice,
-                image = image,
+                image = imageUrl,
                 state = state
             )
         )

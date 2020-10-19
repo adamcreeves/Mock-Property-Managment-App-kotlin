@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mockpropertymanagmentapp.data.models.Image
 import com.example.mockpropertymanagmentapp.data.models.Task
+import com.example.mockpropertymanagmentapp.helpers.SessionManager
 import com.example.mockpropertymanagmentapp.helpers.toastShort
 import com.example.mockpropertymanagmentapp.ui.properties.adapters.AdapterProperties
 import com.example.mockpropertymanagmentapp.ui.todolist.adapters.AdapterTodoList
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_to_do_list.*
 class ToDoRepository {
     var databaseReference = FirebaseDatabase.getInstance().getReference(Task.COLLECTION_NAME)
     var firebaseDatabase = FirebaseDatabase.getInstance()
+    lateinit var sessionManager: SessionManager
     fun getData(
         myContext: Context,
         adapterTodoList: AdapterTodoList,
@@ -44,6 +46,7 @@ class ToDoRepository {
     }
 
     fun addNewTask(
+        myContext: Context,
         priority: String,
         summary: String,
         dueDate: String,
@@ -51,6 +54,8 @@ class ToDoRepository {
         estimatedDuration: String,
         image: String,
     ) {
+        sessionManager = SessionManager(myContext)
+        var imageUrl = sessionManager.getImageUrl()
         var newTask = Task(
             priority = priority,
             summary = summary,
