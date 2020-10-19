@@ -1,6 +1,7 @@
 package com.example.mockpropertymanagmentapp.ui.todolist.activities
 
 import android.Manifest
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
@@ -224,9 +225,17 @@ class AddTaskActivity : AppCompatActivity(), ToDoListener {
     fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path: String =
-            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
-        return Uri.parse(path)
+
+        var values = ContentValues()
+        values.put(MediaStore.Images.Media.TITLE,"Title")
+        values.put(MediaStore.Images.Media.DESCRIPTION,"From Camera")
+        val path: Uri =
+            getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values)!!
+
+//        val path: String =
+//            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
+
+        return Uri.parse(path.toString())
     }
 
     // get actual path

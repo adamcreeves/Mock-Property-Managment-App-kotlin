@@ -11,7 +11,7 @@ class ToDoViewModel : ViewModel() {
     var dueDate: String? = null
     var estimatedCost: String? = null
     var estimatedDuration: String? = null
-    var image: String? = "https://www.ottospm.com/wp-content/uploads/2018/09/IMG_4404.jpg"
+    var image: String? = "https://sm.pcmag.com/t/pcmag_uk/guide/t/the-best-t/the-best-to-do-list-apps-for-2020_fvu6.1200.jpg"
     var todoListener: ToDoListener? = null
 
     fun onSaveNewTaskClicked(view: View) {
