@@ -4,30 +4,31 @@ Project #3 in Android OS training at Apolis
 
 App Screenshots:
 
-Splash screen ---------------------------------- Start screen
+Splash screen ---------------------------------------- Start screen
 
-[![Screen Shot 2020-10-13 at 10.32.27 AM](https://i.imgur.com/1T3ETrr.png)]
-[![Screen Shot 2020-10-13 at 10.31.32 AM](https://i.imgur.com/3uNUSBO.png)]
+[![Screen Shot 2020-10-19 at 2.40.29 PM](https://i.imgur.com/Jq4qSdj.png)]
+[![Screen Shot 2020-10-19 at 2.40.45 PM](https://i.imgur.com/tXhGvpO.png)]
 
-Login screen
+Register screens: Landlord --------------------------- Tenant
 
-[![Screen Shot 2020-10-13 at 10.31.47 AM](https://i.imgur.com/ZmoNmRQ.png)]
+[![Screen Shot 2020-10-19 at 2.40.58 PM](https://i.imgur.com/JjNcZAr.png)]
+[![Screen Shot 2020-10-19 at 2.41.03 PM](https://i.imgur.com/UkhSlvf.png)]
 
-Register screens: Landlord -------------------------- Tenant
+Home screen ------------------------------------------ Login screen
 
-[![Screen Shot 2020-10-13 at 10.32.02 AM](https://i.imgur.com/BuoZUBe.png)]
-[![Screen Shot 2020-10-13 at 10.32.11 AM](https://i.imgur.com/FNYtQfB.png)]
+[![Screen Shot 2020-10-19 at 2.41.35 PM](https://i.imgur.com/DlL7Ox2.png)]
+[![Screen Shot 2020-10-19 at 2.40.52 PM](https://i.imgur.com/WCARI12.png)]
 
-Home screen
+Contact Us View
 
-[![Screen Shot 2020-10-13 at 10.33.33 AM](https://i.imgur.com/h702pBb.png)]
+[![Screen Shot 2020-10-19 at 2.41.46 PM](https://i.imgur.com/XFhcloN.png)]
 
-Properties screen ---------------------- Add New Property screen
+Properties screen ------------------------------------ Add New Property screen
 
-[![Screen Shot 2020-10-13 at 10.36.22 AM](https://i.imgur.com/r3Jq5Ei.png)]
-[![Screen Shot 2020-10-13 at 10.36.30 AM](https://i.imgur.com/2iu2hPc.png)]
+[![Screen Shot 2020-10-19 at 2.41.57 PM](https://i.imgur.com/ACZLpvy.png)]
+[![Screen Shot 2020-10-19 at 2.42.03 PM](https://i.imgur.com/3FKsbnS.png)]
 
-To-Do List screen -------------------------- Add New Task screen
+To-Do List screen ------------------------------------ Add New Task screen
 
-[![Screen Shot 2020-10-13 at 10.36.41 AM](https://i.imgur.com/XRN9s6g.png)]
-[![Screen Shot 2020-10-13 at 10.36.50 AM](https://i.imgur.com/OZJiwXI.png)]
+[![Screen Shot 2020-10-19 at 2.42.25 PM](https://i.imgur.com/LYikAGC.png)]
+[![Screen Shot 2020-10-19 at 2.42.33 PM](https://i.imgur.com/zHyvZ1F.png)]
