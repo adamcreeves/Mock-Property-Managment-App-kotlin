@@ -16,7 +16,7 @@ class PropertiesViewModel : ViewModel() {
     var country: String? = null
     var purchasePrice: String? = null
     var image: String? =
-        "https://cdn.trendir.com/wp-content/uploads/old/house-design/2015/11/12/malibu-beach-house-ocean-side.jpg"
+        "https://i.pinimg.com/736x/1c/8a/9a/1c8a9a658ea0709e698d56389376a28b.jpg"
     var newPropertyListener: NewPropertyListener? = null
 
     fun onAddPropertyClicked(view: View) {

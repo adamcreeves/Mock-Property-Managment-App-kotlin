@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.data.models.Property
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.row_adapter_properties.view.*
 
 class AdapterProperties(var myContext: Context, var myList: ArrayList<Property>) :
@@ -39,6 +40,12 @@ class AdapterProperties(var myContext: Context, var myList: ArrayList<Property>)
             itemView.text_view_state.text = property.state
             itemView.text_view_country.text = property.country
             itemView.text_view_purchase_price.text = property.purchasePrice
+            Picasso.get().load(property.image)
+                .resize(100, 100)
+                .centerCrop()
+                .placeholder(R.drawable.ic_baseline_image_24)
+                .error(R.drawable.ic_baseline_broken_image_24)
+                .into(itemView.image_view_property)
         }
     }
 }

@@ -28,6 +28,13 @@
         android:visibility="invisible"
         android:background="@drawable/ic_baseline_done_24" />
 
+    <ImageView
+        android:id="@+id/image_view_task_image"
+        android:layout_marginTop="20dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/image_view_completed_task" />
+
     <Button
         android:id="@+id/button_delete_task"
         android:layout_width="30dp"
@@ -120,7 +127,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Estimated Cost: $"
+            android:text="Estimated Cost: $ "
             android:textStyle="italic"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="15sp" />

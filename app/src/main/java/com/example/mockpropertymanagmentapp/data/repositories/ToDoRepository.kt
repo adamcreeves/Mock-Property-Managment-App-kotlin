@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.mockpropertymanagmentapp.data.models.Image
 import com.example.mockpropertymanagmentapp.data.models.Task
 import com.example.mockpropertymanagmentapp.helpers.toastShort
 import com.example.mockpropertymanagmentapp.ui.properties.adapters.AdapterProperties
@@ -47,9 +48,17 @@ class ToDoRepository {
         summary: String,
         dueDate: String,
         estimatedCost: String,
-        estimatedDuration: String
+        estimatedDuration: String,
+        image: String,
     ) {
-        var newTask = Task(priority, summary, dueDate, estimatedCost, estimatedDuration)
+        var newTask = Task(
+            priority = priority,
+            summary = summary,
+            dueDate = dueDate,
+            estimatedCost = estimatedCost,
+            estimatedDuration = estimatedDuration,
+            image = image
+        )
         var databaseReference = firebaseDatabase.getReference("tasks")
         var taskId = databaseReference.push().key
         databaseReference.child(taskId!!).setValue(newTask)

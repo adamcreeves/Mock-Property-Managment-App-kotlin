@@ -11,6 +11,7 @@ class ToDoViewModel : ViewModel() {
     var dueDate: String? = null
     var estimatedCost: String? = null
     var estimatedDuration: String? = null
+    var image: String? = "https://www.ottospm.com/wp-content/uploads/2018/09/IMG_4404.jpg"
     var todoListener: ToDoListener? = null
 
     fun onSaveNewTaskClicked(view: View) {
@@ -23,7 +24,8 @@ class ToDoViewModel : ViewModel() {
             summary!!,
             dueDate!!,
             estimatedCost!!,
-            estimatedDuration!!
+            estimatedDuration!!,
+            image!!
         )
         todoListener?.onSuccessfulAdd("New Task Added Successfully")
     }

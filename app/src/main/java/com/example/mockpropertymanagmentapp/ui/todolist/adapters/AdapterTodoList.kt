@@ -11,6 +11,8 @@ import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.data.models.Task
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.core.operation.ListenComplete
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.row_adapter_properties.view.*
 import kotlinx.android.synthetic.main.row_adapter_todo_list.view.*
 import java.text.FieldPosition
 
@@ -54,6 +56,12 @@ class AdapterTodoList(
             itemView.text_view_estimated_cost.text = task.estimatedCost
             itemView.text_view_estimated_duration.text = task.estimatedDuration
             itemView.text_view_status.text = task.status
+            Picasso.get().load(task.image)
+                .resize(70, 70)
+                .centerCrop()
+                .placeholder(R.drawable.ic_baseline_image_24)
+                .error(R.drawable.ic_baseline_broken_image_24)
+                .into(itemView.image_view_task_image)
             itemView.button_delete_task.setOnClickListener {
                 var builder = AlertDialog.Builder(mContext)
                 builder.setTitle("Confirm Delete")

@@ -17,10 +17,11 @@
             android:id="@+id/image_view_property"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:padding="5dp" />
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"/>
 
         <LinearLayout
-            android:layout_width="250dp"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -33,8 +34,7 @@
                 android:layout_gravity="center"
                 android:text="Address"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
                 android:layout_gravity="center"
                 android:text="Purchase Price"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="23dp"
+                android:textSize="20dp"
                 android:textStyle="italic"
                 />
         </LinearLayout>
