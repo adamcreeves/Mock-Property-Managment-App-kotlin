@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.data.models.Task
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.core.operation.ListenComplete
 import kotlinx.android.synthetic.main.row_adapter_todo_list.view.*
 import java.text.FieldPosition
 
@@ -42,6 +43,10 @@ class AdapterTodoList(
     inner class mViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(task: Task, position: Int) {
             val databaseReference = FirebaseDatabase.getInstance().getReference("tasks")
+            var status = task.status
+            if (status == "Completed") {
+                itemView.image_view_completed_task.visibility = View.VISIBLE
+            }
             itemView.text_view_priority.text = task.priority
             itemView.text_view_summary.text = task.summary
             itemView.text_view_due_date.text = task.dueDate
@@ -63,6 +68,15 @@ class AdapterTodoList(
                 }
                 var myAlertDialog = builder.create()
                 myAlertDialog.show()
+            }
+            itemView.button_mark_task_complete.setOnClickListener {
+                if (status == "Incomplete") {
+                    itemView.image_view_completed_task.visibility = View.VISIBLE
+                    databaseReference.child(keyList[position]).child("status").setValue("Completed")
+                } else {
+                    itemView.image_view_completed_task.visibility = View.INVISIBLE
+                    databaseReference.child(keyList[position]).child("status").setValue("Incomplete")
+                }
             }
         }
     }

@@ -13,6 +13,22 @@
     android:padding="10dp">
 
     <Button
+        android:id="@+id/button_mark_task_complete"
+        android:layout_width="45dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_height="45dp"
+        android:background="@drawable/ic_baseline_done_outline_24"
+        android:layout_marginStart="2dp" />
+
+    <ImageView
+        android:id="@+id/image_view_completed_task"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="invisible"
+        android:background="@drawable/ic_baseline_done_24" />
+
+    <Button
         android:id="@+id/button_delete_task"
         android:layout_width="30dp"
         android:layout_height="30dp"

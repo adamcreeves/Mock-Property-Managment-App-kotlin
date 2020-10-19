@@ -36,7 +36,6 @@ class ToDoRepository {
         })
     }
     fun addNewTask(priority: String, summary: String, dueDate: String, estimatedCost: String, estimatedDuration: String) {
-        var toDoResponse = MutableLiveData<String>()
         var newTask = Task(priority, summary, dueDate, estimatedCost, estimatedDuration)
         var databaseReference = firebaseDatabase.getReference("tasks")
         var taskId = databaseReference.push().key

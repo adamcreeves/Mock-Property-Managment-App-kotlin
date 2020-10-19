@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mockpropertymanagmentapp.R
 import com.example.mockpropertymanagmentapp.data.models.Task
@@ -33,7 +35,7 @@ class ToDoListActivity : AppCompatActivity() {
         ToDoRepository().getData(this, adapterTodoList!!, mList, keyList)
         recycler_view_todo_list.layoutManager = LinearLayoutManager(this)
         recycler_view_todo_list.adapter = adapterTodoList
-        progress_bar_todo.visibility = View.GONE
+
         button_todo_list_to_add_task.setOnClickListener{
             startActivity(Intent(this, AddTaskActivity::class.java))
         }
